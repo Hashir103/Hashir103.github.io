@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Inknut+Antiqua');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+body {
+	background: url("../img/bg.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.content {
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	transform: translate(-50%);
+	width: 60%;
+	padding: 24px;
+	font-family: Helvetica Neue;
+	margin-bottom: 50px;
+}
+.header-logo {
+	color: #BA9F72;
+	font-size: 32px;
+}
+.header-separator {
+	width: 3%;
+	height: 3px;
+	background-color: #BA9F72;
+	position: relative;
+	top: 8px;
+}
+.intro-image img {
+	width: 90%;
+	height: 65%;
+}
+.intro-separator {
+	width: 10%;
+	height: 3px;
+	background-color: #fff;
+	position: relative;
+	top: 8px;
+}
+.intro-box {
+	position: absolute;
+	background: rgba(186, 159, 90, 0.95);
+	color: #fff;
+    padding: 45px;
+	font-size: 16px;
+	width: 40%;
+	font-family: 'Inknut Antiqua';
+	margin-top: -15%;
+	right: 10%;
+}
+.circular-img {
+	border-radius: 50%;
+/* 	width: 20%;
+	height: 25%; */
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+.contributions {
+	font-family: Indie Flower;
+	font-size: 24px;
+}
+.outro {
+	font-family: Indie Flower;
+	font-size: 24px;
+	line-height: 48px;
+}
+.names {
+	font-weight: bold;
+}
+.bigthx {
+	font-size: 48px;
+	font-weight: bold;
+	margin-bottom: 25px;
+}
