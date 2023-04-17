@@ -1,12 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <!-- <header>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header> -->
+
+    <main>
+      <!-- <section id="about" >
+        <div class="container box_styling">
+          <h1>About Me</h1>
+          <p>
+            My name is Hashir Sami, and I am a Software Design student at Queen's University.
+          </p>
+          <br>
+          <p>Here is some information about me:</p>
+          <ul>
+            <li><strong>Education:</strong> [Your Education]</li>
+            <li><strong>Skills:</strong> [Your Skills]</li>
+            <li><strong>Experience:</strong> [Your Experience]</li>
+          </ul>
+        </div>
+      </section> -->
+      <section id="about" style="margin-bottom:10%">
+        <div id="gradient"></div>
+        <div id="card">
+        <img src="assets/mcdonlads.jpeg"/>
+        <h2>Hashir Sami (he/him)</h2>
+        <p>2nd Year CS @ Queen's University</p>
+        <p>Skills: Python, TypeScript, Dart, HTML/CSS, Java, C#, C, Bash</p>
+        <p><br></p>
+        <center>
+            <!-- Add font awesome icons -->
+            <a href="https://www.linkedin.com/in/hashir-sami" target="_blank" class="fa fa-linkedin"></a>
+            <a href="https://github.com/Hashir103/" target="_blank" class="fa fa-github"></a>
+        </center>
+        <p><a href="/assets/Hashir_Sami.pdf" target="_blank">Resume</a></p>
+        </div>
+    </section>
+
+      <section id="projects">
+        <div class="container box_styling">
+          <h1>Projects</h1>
+          <div class="grid">
+            <div class="project">
+              <h2>Soul Reforged</h2>
+              <p><strong>Tech Used: Unity, C#</strong></p>
+              <br>
+              <p>Unity Videogame created for the final project of my 2nd year Game Design course. Designed a single-player survival game and published to Itch.io.</p>
+              <br>
+              <a href="[Project URL]" class="btn">View Project</a>
+            </div>
+            <div class="project">
+                <h2>Nipiy</h2>
+                <p><strong>Tech Used: Dart, Flutter, Google Maps API</strong></p>
+                <br>
+                <p>Google Solutions Challenge 2023 Project created to provide Indigenous people of Canade accessible water information</p>
+                <br>
+                <a href="[Project URL]" class="btn">View Project</a>
+              </div>
+              <div class="project">
+                <h2>Restricted Skate</h2>
+                <p><strong>Tech Used: HTML/CSS, JavaScript, Shopify API</strong></p>
+                <br>
+                <p>Designed a e-commerce website for a clothing brand and implemented Shopify shop service to the website. <br><br></p>
+                <br>
+                <a href="[Project URL]" class="btn">View Project</a>
+              </div>
+              <div class="project">
+                <h2>Food4All</h2>
+                <p><strong>Tech Used: Python, Flask, HTML/CSS, TypeScript, Google Maps API</strong></p>
+                <br>
+                <p>Produced a full-stack application designed to target food insecurity in the City of Kingston, ON through food recycling using Google Maps API.</p>
+                <br><br>
+                <a href="[Project URL]" class="btn">View Project</a>
+              </div>
+              <div class="project">
+                <h2>PVR Algorithm</h2>
+                <p><strong>Tech Used: Python, Flask, HTML/CSS, Pandas</strong></p>
+                <br>
+                <p>Created a mathematical algorithm and using webscraped box score stats, applied it to Ontario Men's College Basketball Players to find the best performing player on a weekly basis.</p>
+                <br>
+                <a href="[Project URL]" class="btn">View Project</a>
+              </div>
+              <div class="project">
+                <h2>Duck World</h2>
+                <p><strong>Tech Used: Adobe Flash, ActionScript, SmartFoxServer</strong></p>
+                <br>
+                <p>[Deprecated] Designed a virtual world chatroom using Adobe Flash, ActionScript and powered through SmartFoxServer that held 10 concurrent users.</p>
+                <br>
+                <a href="[Project URL]" class="btn">View Project</a>
+              </div>
+            </div>
+        </div>
+      </section>
+
+    <script src="main.js"></script>
+  </body>
 </html>
