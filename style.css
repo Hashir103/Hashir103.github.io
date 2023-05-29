@@ -76,6 +76,7 @@
   .container {
     max-width: 960px;
     margin: 0 auto;
+    border-radius: 2.5%;
   }
   
   ul {
@@ -184,7 +185,7 @@ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
 .box_styling {
   background-color: #E9E2D0;
-  padding: 2.5%;
+  padding: 4%;
 }
 
 #gradient {
