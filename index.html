@@ -4,111 +4,138 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>My Portfolio</title>
+    <title>Hashir's Portfolio</title>
+    <link rel="shortcut icon" href="/assets/mcdonlads.jpeg" type="image/jpg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" />
-    <!-- Add icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/abab0449ac.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <!-- <header>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header> -->
-
-    <main>
-      <!-- <section id="about" >
-        <div class="container box_styling">
-          <h1>About Me</h1>
-          <p>
-            My name is Hashir Sami, and I am a Software Design student at Queen's University.
-          </p>
-          <br>
-          <p>Here is some information about me:</p>
-          <ul>
-            <li><strong>Education:</strong> [Your Education]</li>
-            <li><strong>Skills:</strong> [Your Skills]</li>
-            <li><strong>Experience:</strong> [Your Experience]</li>
-          </ul>
-        </div>
-      </section> -->
+    <main id="nav">
       <section id="about" style="margin-bottom:10%">
         <div id="gradient"></div>
         <div id="card">
-        <img src="assets/mcdonlads.jpeg"/>
+        <img src="assets/picture.jpeg"/>
         <h2>Hashir Sami (he/him)</h2>
-        <p>2nd Year CS @ Queen's University</p>
-        <p>Skills: Python, TypeScript, Dart, HTML/CSS, Java, C#, C, Bash</p>
-        <p><br></p>
+        <p>CS @ Queen's University <br>
+        Python, TypeScript, Angular, Flutter, Java</p>
         <center>
             <!-- Add font awesome icons -->
             <a href="https://www.linkedin.com/in/hashir-sami" target="_blank" class="fa fa-linkedin"></a>
-            <a href="https://github.com/Hashir103/" target="_blank" class="fa fa-github"></a>
+            <a href="https://github.com/Hashir103/" target="_blank" class=" fa fa-brands fa-github"></a>
         </center>
-        <p><a href="/assets/Hashir_Sami.pdf" target="_blank">Resume</a></p>
+        <p><i class="fa-solid fa-file"></i> <a href="/assets/Hashir_Sami.pdf" target="_blank">Resume</a></p>
         </div>
     </section>
+    </main>
+    <div class="container resumeBody">
+      
+      <div style="text-align: center; padding-top: 1%;">
+        <h6>
+          <a href="#achievements">Achievements</a> &#x2022;
+          <a href="#projects">Project Log</a> &#x2022;
+          <a href="#aboutMe">About Me</a>
+          
+        </h6>
+      </div>
+      <br>
 
-      <section id="projects">
-        <div class="container box_styling">
-          <h1>Projects</h1>
-          <div class="grid">
-            <div class="project">
-              <h2>Soul Reforged</h2>
-              <p><strong>Tech Used: Unity, C#</strong></p>
-              <br>
-              <p>Unity Videogame created for the final project of my 2nd year Game Design course. Designed a single-player survival game and published to Itch.io.</p>
-              <br>
-              <a href="[Project URL]" class="btn">View Project</a>
-            </div>
-            <div class="project">
-                <h2>Nipiy</h2>
-                <p><strong>Tech Used: Dart, Flutter, Google Maps API</strong></p>
-                <br>
-                <p>Google Solutions Challenge 2023 Project created to provide Indigenous people of Canade accessible water information</p>
-                <br>
-                <a href="[Project URL]" class="btn">View Project</a>
-              </div>
-              <!-- <div class="project">
-                <h2>Restricted Skate</h2>
-                <p><strong>Tech Used: HTML/CSS, JavaScript, Shopify API</strong></p>
-                <br>
-                <p>Designed a e-commerce website for a clothing brand and implemented Shopify shop service to the website. <br><br></p>
-                <br>
-                <a href="[Project URL]" class="btn">View Project</a>
-              </div> -->
-              <div class="project">
-                <h2>Food4All</h2>
-                <p><strong>Tech Used: Python, Flask, HTML/CSS, TypeScript, Google Maps API</strong></p>
-                <br>
-                <p>Produced a full-stack application designed to target food insecurity in the City of Kingston, ON through food recycling using Google Maps API.</p>
-                <br><br>
-                <a href="[Project URL]" class="btn">View Project</a>
-              </div>
-              <div class="project">
-                <h2>PVR Algorithm</h2>
-                <p><strong>Tech Used: Python, Flask, HTML/CSS, Pandas</strong></p>
-                <br>
-                <p>Created a mathematical algorithm and using webscraped box score stats, applied it to Ontario Men's College Basketball Players to find the best performing player on a weekly basis.</p>
-                <br>
-                <a href="[Project URL]" class="btn">View Project</a>
-              </div>
-              <div class="project">
-                <h2>Duck World</h2>
-                <p><strong>Tech Used: Adobe Flash, ActionScript, SmartFoxServer</strong></p>
-                <br>
-                <p>[Deprecated] Designed a virtual world chatroom using Adobe Flash, ActionScript and powered through SmartFoxServer that held 10 concurrent users.</p>
-                <br>
-                <a href="[Project URL]" class="btn">View Project</a>
-              </div>
-            </div>
+      <div id="achievements">
+        <h4><i class="fa-solid fa-trophy"></i> Achievements</h4><hr/>
+        <img style="  border: 1px solid #000000;
+        border-radius: 4px;
+        padding: 5px;
+        width: 250px;
+        float: right;
+        margin: 1%;" src="assets/mayor.jpg" alt="">
+        <p><strong>Mayor's Innovation Challenge Finals, Kingston City Hall</strong> - After fastracking to this pitch competition from QHacks, my group and I was tasked of creating a pitch for our project: Food4All. After making some modiifcations of our idea based off criticism at QHacks, we presented our project in front of the City of Kingston government (See <a href="https://www.youtube.com/live/_nUgHU82tgo?feature=share&t=3350" target="_blank">here</a>). After presenting our pitch, we were awarded with the <strong>Public Sector Innovation Stream Award</strong>. This award gave me a four month summer internship with the City.</p>
+        
+        <img style="  border: 1px solid #000000;
+        border-radius: 4px;
+        padding: 5px;
+        width: 250px;
+        float: left;
+        margin: 1%;" src="assets/qhacks.png" alt="">
+
+        <p><strong>QHacks, Queen's University</strong> - At QHacks, I created a web application called Food4All. The purpose of this application was to reduce food insecurity in the City of Kingston through redistribution of what would otherwise be wasted food. Backed by a volunteer network, our pitch aimed at impressing the City of Kingston representative. Fortunately, we were successful in this and awarded <strong>Direct Entry to the Mayor's Innovation Challenge Pitch Competition</strong>. We had two months to prepare for the next phase of our project.</p>
+
+        <img style="  border: 1px solid #000000;
+        border-radius: 4px;
+        padding: 5px;
+        width: 250px;
+        float: right;
+        margin: 1%;" src="assets/newhacks.png" alt="">
+
+        <p><strong>NewHacks, University of Toronto</strong> - Entering my first Hackathon, this was a two day competition held at the University of Toronto. Excited but nervous, my friends and I created a project solely focused on our interest: basketball. We created the Player Value Rating algorithm, a tool that lets anyone objectively determine the best basketball player based on their peers AND respective to their teams. This does not currently exist in basketball analytics. Our project was further focused on highlighting Ontario University Men's Basketball players, who are often overlooked compared to their peers in the NCAA. Our project won the <strong>#1 Overall Project</strong> at this competition.</p>
+
+        <p><strong style="text-decoration: underline;">Articles about My Projects</strong><br><a href="https://www.queensu.ca/gazette/stories/innovating-community" target="_blank">Queen's Gazette</a><br>
+        <a href="https://www.kingstonist.com/news/sixth-annual-mayors-innovation-challenge-winners-announced/" target="_blank">Kingstonist</a><br><a href="https://www.thewhig.com/news/eight-teams-finalists-in-mayors-innovation-challenge" target="_blank">The Whig</a></p>
+        <br>
+      <a href="#nav">Back to Top <i class="fa-solid fa-arrow-up"></i></a>
+      <br><br>
+      </div>
+      <div id="projects">
+      <h4><i class="fa-solid fa-file-pen"></i> Project Log</h4><hr/>
+      Click on a project.txt to learn more. <br><br>
+      <ul>
+        <li style="list-style: none;"><span style="width: 0rem;"></span> <i class="fa-regular fa-folder-open"></i> all_projects/
+          <ul style=" border-left: 1px solid; margin-left: 1rem; margin-top: 0rem; padding-top: 1rem; padding-left: 0rem;">
+            <li style="list-style: none; margin-top: 1rem;"><span></span><i class="fa-regular fa-folder-open"></i> competition_projects/
+            <ul>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">nipiy-google-solutions-challenge.txt</a></li>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">am_i_at_risk-methacks.txt</a></li>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">food_4_all-qhacks.txt</a></li>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">player_value_rating-newhacks.txt</a></li>
+            </ul>
+            </li>
+            <li style="list-style: none; margin-top: 1rem;"><span></span><i class="fa-regular fa-folder-open"></i> personal_projects/
+            <ul>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">restricted_skate.txt</a></li>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">duck_world.txt</a></li>
+            </ul>
+           </li>
+           <li style="list-style: none; margin-top: 1rem;"><span></span><i class="fa-regular fa-folder-open"></i> work_school_projects/
+            <ul>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">kingston_locums.txt</a></li>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">sponsorship_list.txt</a></li>
+               <li style="list-style: none;"><span style="height: 2.0rem; margin-left: 0.5rem;"></span><i class="fa-solid fa-file"></i> <a href="">soul_reforged.txt</a></li>
+            </ul>
+           </li>
+          </ul>
+        </li>
+      </ul>
+      <br>
+      <a href="#nav">Back to Top <i class="fa-solid fa-arrow-up"></i></a>
+      <br><br>
+      </div>
+      <div id="aboutMe">
+        <h4><i class="fa-solid fa-user"></i> About Me </h4><hr/>
+        <p>Born in Los Angeles, California, raised in Toronto, but studying at Queen's University in Kingston, I can safely say that I'm no stranger to change. Whether personal, academic, or athletic, adversity has followed me throughout my life, but I've always moved forward. Scoring an own goal in my middle school City Championship game used to be one of my most embarrassing memories. Today, I can laugh at myself for it; something I couldn't do before this.</p>
+
+        <img style="  border: 1px solid #000000;
+        border-radius: 4px;
+        padding: 5px;
+        width: 250px;
+        float: left;
+        margin: 1%;" src="assets/badminton.png" alt="">
+  
+        <p>Speaking of sports, I still play and love them. I play basketball more recreationally with my friends now, but I still play competitve badminton and soccer at University Intramurals. In fact, my friend and I won our first badminton intramural together. I also love watching basketball, specifically the Golden State Warriors. Besides that, I'm either watching movies, playing chess, or even some videogames here and there. But mostly, I love to code.</p>
+
+        <img style="  border: 1px solid #000000;
+        border-radius: 4px;
+        padding: 5px;
+        width: 220px;
+        float: right;
+        margin: 1%;" src="assets/arena.JPG" alt="">
+  
+        <p>I started learning to code in Grade 4, trying to recreate bootleg versions of Club Penguin. I became very familiar with Flash. I then stumbled across the world of web development and tried to make my own websites, using WordPress and Blog sites, and then eventually from scratch. I gave up for a while.</p>
+
+        <p>I revisited programming in middle school and picked it up more seriously in high school. Currently, I consider myself a full stack developer, with lots of experience in different parts of the programming world. Right now, I work with an Angular Firebase tech stack for the City of Kingston. In the past, I've worked with Flutter, Python/Flask, C, C#, Java, and pure HTML/CSS/JavaScript. Also, I love AI. I work for Cohere and help improve their large language models on a part time basis.</p>
+        <br>
+        <a href="#nav">Back to Top <i class="fa-solid fa-arrow-up"></i></a>
+        <br><br>
         </div>
-      </section>
-
-    <script src="main.js"></script>
+    </div>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </html>

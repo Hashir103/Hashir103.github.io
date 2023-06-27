@@ -8,7 +8,7 @@
   :root {
     --primary-color: #1768AC;
     --secondary-color: #06BEE1;
-    --tertiary-color: #b6e9ff;
+    --tertiary-color: #57b1d8;
     --font-color: #333;
   }
   
@@ -23,7 +23,6 @@
   header {
     background-color: var(--primary-color);
     color: #fff;
-    padding: 20px;
   }
   
   nav {
@@ -53,135 +52,10 @@
     background-color: var(--secondary-color);
   }
   
-  main {
-    padding: 20px;
-  }
-  
   section {
     margin-bottom: 40px;
   }
   
-  h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: var(--primary-color);
-  }
-  
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    border-radius: 2.5%;
-  }
-  
-  ul {
-    list-style: none;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    grid-gap: 20px;
-  }
-  
-  .project {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 20px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .project:hover {
-
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .project-image {
-
-    margin-bottom: 10px;
-  }
-  
-  .project img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  .btn {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .btn:hover {
-    background-color: var(--tertiary-color);
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  form input,
-  form textarea {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  form button[type='submit'] {
-    display: block;
-    background-color: var(--secondary-color);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    }
-
-form button[type='submit']:hover {
-background-color: var(--tertiary-color);
-}
-
-@media screen and (max-width: 768px) {
-nav ul li {
-margin: 0 5px;
-}
-}
-
-@media screen and (max-width: 576px) {
-h1 {
-font-size: 30px;
-}
-
-h2 {
-font-size: 20px;
-}
-
-.grid {
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-}
 
 .box_styling {
   background-color: #E9E2D0;
@@ -207,15 +81,15 @@ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   padding-left: 20px;
   border-radius: 5px;
   width: 520px;
-  height: 275px;
+  height: 290px;
   z-index: -1;
 }
   
 
 #card {
   position: absolute;
-  width: 450px;
-  height: 225px;
+  width: 420px;
+  height: 220px;
   padding: 25px;
   left: 50%;
   top: 67.5px;
@@ -229,9 +103,6 @@ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   width: 25%;
   float: left;
   margin-right: 20px;
-  -webkit-filter: sepia(1);
-  -moz-filter: sepia(1);
-  filter: sepia(1);
   border-radius: 50%;
 }
 
@@ -282,4 +153,19 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+
+.resumeBody {
+  background-color: #E9E2D0;
+  border-radius: 1%;
+  padding: 2%;
+  box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
+}
+
+span {
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  width: 2rem;
+  display: inline-block;
+  margin-bottom: 0.3rem;
 }
