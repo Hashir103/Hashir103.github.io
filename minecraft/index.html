@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Command Converter</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        textarea {
+            width: calc(100% - 22px); /* Added padding adjustment */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: monospace;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto; /* Center align the button */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        #result h2 {
+            color: #333;
+        }
+        #result textarea {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minecraft Player Head Tool (1.21)</h1>
+        <p>Converts a command from 1.16+ to 1.21 supported. Get player heads from <a href="https://mcheads.ru/">here</a>.</p>
+        <form id="converterForm">
+            <div>
+                <h2><label for="original_command">Original Command:</label></h2>
+                <textarea id="original_command" name="original_command" rows="4" cols="50" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Convert</button>
+            </div>
+        </form>
+        <div id="result">
+            <h2><label for="converted_command">Converted Command:</label></h2>
+            <textarea id="new_command" rows="4" cols="50" readonly></textarea>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('converterForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const originalCommand = document.getElementById('original_command').value;
+            const newCommand = convertCommand(originalCommand);
+            document.getElementById('new_command').value = newCommand;
+        });
+
+        function convertCommand(original) {
+            // Extract the JSON part
+            const skullOwnerMatch = original.match(/SkullOwner:\{(.*?)\}\s*\}/);
+            if (!skullOwnerMatch) {
+                alert("Could not find SkullOwner data in the command.");
+                return '';
+            }
+            const skullOwnerData = skullOwnerMatch[1];
+
+            // Parse the Id
+            const idMatch = skullOwnerData.match(/Id:\[I;([-0-9,]+)\]/);
+            if (!idMatch) {
+                alert("Could not find Id in SkullOwner data.");
+                return '';
+            }
+            const idValue = idMatch[1];
+
+            // Parse the textures
+            const texturesMatch = skullOwnerData.match(/Value:"([^"]+)"/);
+            if (!texturesMatch) {
+                alert("Could not find textures value in SkullOwner data.");
+                return '';
+            }
+            const texturesValue = texturesMatch[1];
+
+            // Build the new JSON structure
+            const newProfile = {
+                id: idValue.split(',').map(Number),
+                properties: [
+                    {
+                        name: "textures",
+                        value: texturesValue
+                    }
+                ]
+            };
+
+            // Create the new command
+            const newCommand = `/give @p minecraft:player_head[minecraft:profile=${JSON.stringify(newProfile)}]`;
+            return newCommand;
+        }
+    </script>
+</body>
+</html>
