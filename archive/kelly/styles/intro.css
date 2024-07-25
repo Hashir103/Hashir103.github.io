@@ -1,0 +1,52 @@
+/* style.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: var(--dark-color);
+}
+
+:root {
+    --dark-color: #000;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.intro-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left like a letter */
+    justify-content: center;
+    padding: 40px; /* Add more padding to mimic a letter */
+    color: #000; /* Change text color to black */
+    text-align: left; /* Align text to the left */
+    background-color: #fff; /* Change background color to white */
+    border: 1px solid #ccc; /* Add a light border */
+    border-radius: 4px; /* Slightly round the corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    width: 600px; /* Set a fixed width */
+    max-width: 90%; /* Ensure it is responsive */
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background: #ff6bc9;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 25%;
+    margin: auto;
+  }
+
+  button:hover {
+    background: #fb1eaa;
+  }
