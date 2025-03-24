@@ -122,7 +122,7 @@ a:hover {
     align-items: center;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 0 8px rgba(0, 255, 240, 0.3);
-    font-size: 18px;
+    font-size: 14px;
     position: relative;
     transform-style: preserve-3d;
     transform: rotateX(20deg);
@@ -336,21 +336,7 @@ a:hover {
     transform-origin: bottom;
 }
 
-@media screen and (max-height: 915px) {
-    #resume-container {
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-    
-    .tab, .bottom-tab {
-        font-size: 13px;
-    }
-}
-
 @media screen and (max-height: 700px) {
-    #resume-container {
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-    
     .mark {
         height: 3px;
         margin: 1px 0;
@@ -359,16 +345,23 @@ a:hover {
     .connector, .connector-2 {
         height: 12%;
     }
+}
 
+@media screen and (max-width: 650px) {
+    #resume-container {
+        width: 95vw;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    .tab, .bottom-tab {
+        font-size: 10px;
+    }
+    
     .index-marks {
         left: -15px;
     } 
     .index-marks-right {
         right: -15px;
-    }
-
-    .tab, .bottom-tab {
-        font-size: 10px;
     }
 
     .bottom-tab:nth-child(1) {
@@ -405,19 +398,5 @@ a:hover {
 
     .tab:nth-child(4) {
         left: 16px;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    #resume-container {
-        width: 95vw;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-    
-    .index-marks {
-        left: -15px;
-    } 
-    .index-marks-right {
-        right: -15px;
     }
 }
