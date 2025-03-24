@@ -1,35 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Hashir's Portfolio</title>
-    <link rel="shortcut icon" href="/assets/mcdonlads.jpeg" type="image/jpg">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://kit.fontawesome.com/abab0449ac.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="center-container">
-      <main id="nav">
-        <section id="about" style="margin-bottom:10%">
-          <div id="gradient"></div>
-          <div id="card">
-            <img src="assets/picture.jpeg"/>
-            <h2><strong>Hashir Sami (he/him)</strong></h2>
-            <p>CS @ Queen's University <br>
-            React, Angular, Python, C#, Flutter</p>
-            <center>
-              <!-- Add font awesome icons -->
-              <a href="https://www.linkedin.com/in/hashir-sami" target="_blank" class="fa fa-linkedin"></a>
-              <a href="https://github.com/Hashir103/" target="_blank" class=" fa fa-brands fa-github"></a>
-            </center>
-            <p><i class="fa-solid fa-file"></i> <a href="/assets/Hashir_Sami.pdf" target="_blank">Resume</a></p>
-          </div>
-        </section>
-      </main>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Hashir's Resume</title>
+</head>
+<body>
+    <div id="boot-screen"></div>
+
+    <div id="popup">
+        <img src="/images/lumon.jpg" alt="Popup Image">
     </div>
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <div id="blinking-cursor"></div>
+    
+    <!-- Resume container with rolodex design -->
+    <div id="resume-container">
+        <div class="rolodex">
+            <!-- Top tabs -->
+            <div class="rolodex-tabs">
+                <div class="tab">Projects</div>
+                <div class="tab">Skills</div>
+                <div class="tab">About Me</div>
+                <div class="tab">Experience</div>
+            </div>
+            
+            <!-- Top card section -->
+            <div class="card-top">
+              <div class="divider divider-1"></div>
+              <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center; padding: 20px;">
+                Work in progress.. check back soon :P
+              </div>
+            </div>
+            
+            <!-- Bottom card section -->
+            <div class="card-bottom">
+              <div class="divider divider-2"></div>
+            </div>
+            
+            <!-- Connectors between cards -->
+            <div class="connector"></div>
+            <div class="connector-2"></div>
+
+            <!-- Left side index marks -->
+            <div class="index-marks">
+                <div class="mark" style="margin: -3px 0;"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark" style="margin: -3px 0;"></div>
+            </div>
+            
+            <!-- Right side index marks -->
+            <div class="index-marks-right">
+                <div class="mark" style="margin: -3px 0;"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark"></div>
+                <div class="mark" style="margin: -3px 0;"></div>
+            </div>
+            
+            <!-- Bottom tabs -->
+            <div class="bottom-tabs">
+                <div class="bottom-tab"></div>
+                <div class="bottom-tab"></div>
+                <div class="bottom-tab"></div>
+                <div class="bottom-tab"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      const bootText = [
+          "Open interface: 0x100000531",
+          "parseElements: keyboard: 0 digitizer: 12 pointer: 0 0 scroll: 0 led: 0",
+          "parseElements: vendor: 2",
+          "HE2N_Key Does Not Exist, use KSMCPStatesIGPU for Internal GPU",
+          "GPU = IGPU Initialized, Control ID 16",
+          "Exited AGPMController::start()",
+          "-- 0x5c30 -- 0xe000 -- 0x7e00 ****",
+          "initWithTask",
+          "start",
+          "**** -- ON -> ON (thread: 0xf440)",
+          "Speaker has output streams: 1",
+          "Reuse output buffer idx:1 dev:Speaker offset:13c000 size:41000",
+          "Codec Output has output streams: 1",
+          "Reuse output buffer idx:2 dev:Codec Output offset:184000 size:20800",
+          "Digital Mic has output streams: 0",
+          "Codec Input has output streams: 0",
+          "Total output descriptors: 3",
+          "Device:Speaker using output stream idx:1",
+          "Registered DeviceUID:Speaker Index:1",
+          "ActuatorDeviceUserClient::start Entered"
+      ];
+  
+      const bootScreen = document.getElementById("boot-screen");
+      const popup = document.getElementById("popup");
+      const blinkingCursor = document.getElementById("blinking-cursor");
+      const resumeContainer = document.getElementById("resume-container");
+      let index = 0;
+  
+      function printLine() {
+          if (index < bootText.length) {
+              const newLine = document.createElement("div");
+              newLine.textContent = bootText[index];
+              bootScreen.appendChild(newLine);
+              index++;
+              setTimeout(printLine, 100);
+          } else {
+              bootScreen.style.display = "none";
+              popup.style.display = "flex";
+              setTimeout(() => {
+                  popup.classList.add("show");
+              }, 0);
+  
+              setTimeout(showBlinkingCursor, 2000);
+          }
+      }
+  
+      function showBlinkingCursor() {
+          popup.style.display = "none";
+  
+          blinkingCursor.style.display = "block";
+          blinkingCursor.textContent = ">";
+  
+          let blinkCount = 0;
+          const blinkInterval = setInterval(() => {
+              blinkingCursor.classList.toggle("blink");
+              blinkCount++;
+  
+              if (blinkCount === 6) {
+                  clearInterval(blinkInterval);
+                  blinkingCursor.classList.remove("blink");
+                  blinkingCursor.textContent = "> Loading Hashir's Resume...";
+                  
+                  // After showing the loading message, wait 2 seconds then hide cursor and show content
+                  setTimeout(() => {
+                      blinkingCursor.style.display = "none";
+                      resumeContainer.style.display = "block";
+                  }, 300);
+              }
+          }, 300);
+      }
+  
+      // Initially hide the resume container
+      resumeContainer.style.display = "none";
+      
+      setTimeout(printLine, 300);
+    </script>
+</body>
 </html>
