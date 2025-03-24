@@ -66,13 +66,15 @@ body {
 
 #resume-container {
     position: absolute;
-    width: 600px;
-    height: 800px; /* Increased from 700px to 800px */
+    width: 90vw;
+    max-width: 600px;
+    height: 90vh;
+    max-height: 800px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: monospace;
-    overflow: visible; /* Changed from hidden to visible */
+    overflow: visible;
 }
     
 .rolodex {
@@ -315,4 +317,46 @@ body {
     background-color: rgba(150, 220, 215, 0.2);
     transform: rotateX(60deg) translateZ(-2px);
     transform-origin: bottom;
+}
+
+@media screen and (max-height: 850px) {
+    #resume-container {
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    
+    .tab, .bottom-tab {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    #resume-container {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    
+    .mark {
+        height: 3px;
+        margin: 1px 0;
+    }
+    
+    .connector, .connector-2 {
+        height: 12%;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    #resume-container {
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #resume-container {
+        width: 95vw;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    
+    .rolodex-tabs, .bottom-tabs {
+        width: 90%;
+    }
 }
