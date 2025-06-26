@@ -8,30 +8,104 @@
     <title>Hashir's Resume</title>
 </head>
 <body>
-    <div id="boot-screen"></div>
+    <!-- <div id="boot-screen"></div>
 
     <div id="popup">
         <img src="/images/lumon.jpg" alt="Popup Image">
     </div>
 
-    <div id="blinking-cursor"></div>
+    <div id="blinking-cursor"></div> -->
     
     <!-- Resume container with rolodex design -->
     <div id="resume-container">
         <div class="rolodex">
+            <div class="divider divider-1"></div>
             <!-- Top tabs -->
             <div class="rolodex-tabs">
-                <div class="tab">Projects</div>
-                <div class="tab">Skills</div>
-                <div class="tab">About Me</div>
-                <div class="tab">Experience</div>
+                <div class="tab" data-tab="projects">Projects</div>
+                <div class="tab" data-tab="skills">Skills</div>
+                <div class="tab active" data-tab="about">About Me</div>
+                <div class="tab" data-tab="experience">Experience</div>
             </div>
             
             <!-- Top card section -->
             <div class="card-top">
-              <div class="divider divider-1"></div>
-              <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center; padding: 20px;">
-                Work in progress.. check back soon :P
+              <!-- Projects Content -->
+              <div class="tab-content" id="projects-content">
+                <h3>Projects</h3>
+                <div class="project-item">
+                  <h4>Nipiy | <a href="https://github.com/Hashir103/nipiy" target="_blank">Project Link</a></h4>
+                  <p>Dart, Flutter, Google Maps API</p>
+                </div>
+                <div class="project-item">
+                  <h4>Food4All | <a href="https://devpost.com/software/food4all-end-food-insecurity" target="_blank">Project Link</a></h4>
+                  <p>TypeScript, Google Maps API</p>
+                </div>
+                <div class="project-item">
+                  <h4>Player Value Rating | <a href="https://devpost.com/software/player-value-rating" target="_blank">Project Link</a></h4>
+                  <p>Python, Pandas, Bootstrap, Flask</p>
+                </div>
+              </div>
+              
+              <!-- Skills Content -->
+              <div class="tab-content" id="skills-content">
+                <h3>Technical Skills</h3>
+                <div class="skills-grid">
+                  <div class="skill-category">
+                    <h4>Languages</h4>
+                    <p>JavaScript, Python, Dart, C#</p>
+                  </div>
+                  <div class="skill-category">
+                    <h4>Frameworks</h4>
+                    <p>React, Angular, Django, Flask, Flutter</p>
+                  </div>
+                  <div class="skill-category">
+                    <h4>Libraries</h4>
+                    <p>ChakraUI, Pandas, SKLearn, Firebase, Google Maps API</p>
+                  </div>
+                   <div class="skill-category">
+                    <h4>Tools</h4>
+                    <p>Git, Bash, Microsoft Azure, Google Cloud, Adobe Flash, Unity, Ubuntu</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- About Me Content -->
+              <div class="tab-content active" id="about-content">
+                <h3>About Me</h3>
+                <p>My name's Hashir! I'm a Queen's University student (class of 2026). I love basketball (Golden State Warriors) and football (Manchester City). I also love map-painting games like Europa Universalis IV and shows like Breaking Bad and Game of Thrones.</p>
+                <br>
+                <p>Feel free to connect with me on any of my social links : ). My website was inspired by the Apple TV show Severance.</p>
+              </div>
+              
+              <!-- Experience Content -->
+              <div class="tab-content" id="experience-content">
+                <h3>Experience</h3>
+                <div class="experience-item">
+                  <h4>Software Developer Intern</h4>
+                  <p class="experience-period">May 2024 - June 2025</p>
+                  <p>Centre for Advanced Computing at Queen's University</p>
+                </div>
+                <div class="experience-item">
+                  <h4>IT Support Staff</h4>
+                  <p class="experience-period">September 2023 - April 2024</p>
+                  <p>Queen's University</p>
+                </div>
+                <div class="experience-item">
+                  <h4>Data Quality Intern</h4>
+                  <p class="experience-period">May 2023 - November 2023</p>
+                  <p>Cohere</p>
+                </div>
+                <div class="experience-item">
+                  <h4>Full Stack Developer Intern</h4>
+                  <p class="experience-period">April 2023 - August 2023</p>
+                  <p>City of Kingston</p>
+                </div>
+                <div class="experience-item">
+                  <h4>Junior Programs Instructor</h4>
+                  <p class="experience-period">May 2022 - August 2022</p>
+                  <p>University of Toronto</p>
+                </div>
               </div>
             </div>
             
@@ -94,6 +168,31 @@
     </div>
 
     <script>
+      // Tab switching functionality
+      function initializeTabs() {
+          const tabs = document.querySelectorAll('.tab');
+          const tabContents = document.querySelectorAll('.tab-content');
+          
+          tabs.forEach(tab => {
+              tab.addEventListener('click', () => {
+                  const targetTab = tab.getAttribute('data-tab');
+                  
+                  // Remove active class from all tabs and content
+                  tabs.forEach(t => t.classList.remove('active'));
+                  tabContents.forEach(content => content.classList.remove('active'));
+                  
+                  // Add active class to clicked tab
+                  tab.classList.add('active');
+                  
+                  // Show corresponding content
+                  const targetContent = document.getElementById(targetTab + '-content');
+                  if (targetContent) {
+                      targetContent.classList.add('active');
+                  }
+              });
+          });
+      }
+
       const bootText = [
           "Open interface: 0x100000531",
           "parseElements: keyboard: 0 digitizer: 12 pointer: 0 0 scroll: 0 led: 0",
@@ -161,15 +260,22 @@
                   setTimeout(() => {
                       blinkingCursor.style.display = "none";
                       resumeContainer.style.display = "block";
+                      // Initialize tabs after the resume is shown
+                      initializeTabs();
                   }, 300);
               }
           }, 300);
       }
   
       // Initially hide the resume container
-      resumeContainer.style.display = "none";
+      // resumeContainer.style.display = "none";
       
-      setTimeout(printLine, 300);
+      // Initialize tabs immediately since boot screen is commented out
+      document.addEventListener('DOMContentLoaded', () => {
+          initializeTabs();
+      });
+      
+      // setTimeout(printLine, 300);
     </script>
 </body>
 </html>
