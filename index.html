@@ -112,12 +112,44 @@
             <!-- Bottom card section -->
             <div class="card-bottom">
               <div class="divider divider-2"></div>
-              <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center; padding: 20px;">
-                <a href="https://github.com/hashir103" target="_blank">GitHub</a>
-                &nbsp;&nbsp;//&nbsp;&nbsp;
-                <a href="https://linkedin.com/in/hashir-sami" target="_blank">LinkedIn</a>
-                &nbsp;&nbsp;//&nbsp;&nbsp;
-                <a href="http://hashir.tech/assets/Hashir_Sami.pdf" target="_blank">Resume</a>
+              
+              <!-- Projects Bottom Content -->
+              <div class="bottom-content" id="projects-bottom">
+                <div class="portrait-container">
+                  <div class="portrait-slot-wide">
+                    <img src="/images/projects_1.jpg" alt="Project Image 1">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Skills Bottom Content -->
+              <div class="bottom-content" id="skills-bottom">
+                <div class="portrait-container">
+                  <div class="portrait-slot-wide-skills">
+                    <img src="/images/skills.png" alt="Skill Image 1">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- About Bottom Content -->
+              <div class="bottom-content active" id="about-bottom">
+                <div class="portrait-container">
+                  <div class="portrait-slot">
+                    <img src="/images/aboutme_1.jpg" alt="About Image 1">
+                  </div>
+                  <div class="portrait-slot">
+                    <img src="/images/aboutme_2.png" alt="About Image 2">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Experience Bottom Content -->
+              <div class="bottom-content" id="experience-bottom">
+                <div class="portrait-container">
+                  <div class="portrait-slot-wide">
+                    <img src="/images/experience.jpg" alt="Experience Image 1">
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -159,10 +191,10 @@
             
             <!-- Bottom tabs -->
             <div class="bottom-tabs">
-                <div class="bottom-tab"></div>
-                <div class="bottom-tab"></div>
-                <div class="bottom-tab"></div>
-                <div class="bottom-tab"></div>
+                <div class="bottom-tab"><a href="https://github.com/hashir103" target="_blank">GitHub</a></div>
+                <div class="bottom-tab"><a href="https://linkedin.com/in/hashir-sami" target="_blank">LinkedIn</a></div>
+                <div class="bottom-tab"><a href="mailto:hashirsami@hotmail.ca" target="_blank">Email</a></div>
+                <div class="bottom-tab"><a href="http://hashir.tech/assets/Hashir_Sami.pdf" target="_blank">Resume</a></div>
             </div>
         </div>
     </div>
@@ -172,6 +204,7 @@
       function initializeTabs() {
           const tabs = document.querySelectorAll('.tab');
           const tabContents = document.querySelectorAll('.tab-content');
+          const bottomContents = document.querySelectorAll('.bottom-content');
           
           tabs.forEach(tab => {
               tab.addEventListener('click', () => {
@@ -180,14 +213,21 @@
                   // Remove active class from all tabs and content
                   tabs.forEach(t => t.classList.remove('active'));
                   tabContents.forEach(content => content.classList.remove('active'));
+                  bottomContents.forEach(content => content.classList.remove('active'));
                   
                   // Add active class to clicked tab
                   tab.classList.add('active');
                   
-                  // Show corresponding content
+                  // Show corresponding top content
                   const targetContent = document.getElementById(targetTab + '-content');
                   if (targetContent) {
                       targetContent.classList.add('active');
+                  }
+                  
+                  // Show corresponding bottom content
+                  const targetBottomContent = document.getElementById(targetTab + '-bottom');
+                  if (targetBottomContent) {
+                      targetBottomContent.classList.add('active');
                   }
               });
           });
