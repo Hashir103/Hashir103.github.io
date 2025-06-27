@@ -88,9 +88,9 @@ a:hover {
 #resume-container {
   position: absolute;
   width: 90vw;
-  max-width: 600px;
+  max-width: 618px;
   height: 90vh;
-  max-height: 800px;
+  max-height: 1000px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
