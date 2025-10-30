@@ -51,9 +51,6 @@ body{
   text-shadow:1px 1px 1px #000;
 }
 
-/* place resume icon centered in the middle of the desktop */
-/* (removed .icon.resume - resume desktop icon moved/removed) */
-
 /* ========== Windows ========== */
 .window{
   position:absolute;
@@ -64,6 +61,7 @@ body{
   min-width:320px;
   min-height:220px;
   overflow:hidden;
+  z-index:1000;
 }
 
 .window-header{
@@ -121,9 +119,9 @@ body{
 }
 
 .pinned .pin-btn {
-  border: none; /* remove border unless you really need it */
-  background: transparent; /* no background unless specified */
-  padding: 0; /* no extra padding */
+  border: none;
+  background: transparent;
+  padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -132,10 +130,10 @@ body{
 
 .pinned .pin-btn img {
   display: block;
-  width: 23px; /* control the image size directly */
+  width: 23px;
   height: auto;
-  background: white; /* the white background that covers *only the icon* */
-  border-radius: 4px; /* optional rounding */
+  background: white;
+  border-radius: 4px;
 }
 
 .task-items{flex:1;display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;padding-right:8px}
@@ -149,7 +147,7 @@ body{
   position:absolute;left:0;bottom:34px;width:400px;height:380px;
   border:2px solid #316ac5;border-radius:8px;background:#f0f0f0;overflow:hidden;
   box-shadow:0 6px 18px rgba(0,0,0,0.45);z-index:3000;display:none;flex-direction:column;
-  transform-origin:left bottom; /* for animation */
+  transform-origin:left bottom;
 }
 
 /* open animation */
@@ -194,10 +192,74 @@ body{
 }
 
 /* ========== Responsive tweaks ========== */
+@media (max-width:1024px){
+  /* Windows */
+  .window{
+    max-width:90vw;
+    max-height:80vh;
+    /* OVERRIDE: Center ALL windows on medium screens, overriding inline styles like left:80px; top:80px */
+    left:50% !important; 
+    top:50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  /* iframe inside windows (Resume) */
+  .window-content iframe{
+    width:100% !important;
+    height:100% !important;
+  }
+}
+
+/* Specific fix for small mobile devices (<= 580px) */
+@media (max-width:580px){
+  
+  #aboutWindow {
+    /* Ensures the window is sized appropriately for the content */
+    width: 90vw !important; 
+    height: auto !important;
+    max-height: 90vh; 
+  }
+
+  #resumeWindow {
+    /* Forces the resume window to be large for readability on mobile */
+    width: 95vw !important;
+    height: 90vh !important;
+  }
+}
+
+
 @media (max-width:640px){
   .start-menu{width:320px;height:360px}
   .spotify-widget{display:none}
 }
 
-/* small utility */
+@media (max-width:480px){
+  .window{
+    /* The 1024px query handles centering. These are dimension/font size tweaks. */
+    width:90vw !important;
+    height:70vh !important;
+    min-width:auto;
+    min-height:auto;
+    font-size:12px;
+  }
+
+  .window-header{
+    padding:4px 6px;
+  }
+  .window-title{font-size:12px;}
+  .window-controls button{width:18px;height:16px;font-size:10px;}
+
+  .desktop-icons{
+    grid-template-columns: repeat(1,60px);
+    gap:12px;
+  }
+  .icon img{width:36px;height:36px;}
+  .icon span{font-size:10px;}
+
+  .taskbar{height:32px;padding:0 4px;}
+  .start-button{padding:0 8px;gap:4px;font-size:12px;}
+  .pinned .pin-btn img{width:20px;}
+}
+
+/* ========== Small utility ========== */
 button:focus{outline:2px solid rgba(0,100,255,0.25)}
