@@ -1,0 +1,203 @@
+/* ========== Variables ========== */
+:root{
+  --taskbar-blue:#245edb;
+  --xp-blue-start:#2f8cff;
+  --xp-blue-end:#0050ef;
+  --xp-window-bg:#ECE9D8;
+  --font: "Tahoma", "Verdana", sans-serif;
+}
+
+/* ========== Reset ========== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--font);
+  background: url('images/winxp-wallpaper.jpg') center/cover no-repeat;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  height:100%;
+  overflow:hidden;
+}
+
+/* ========== Desktop ========== */
+.desktop{
+  position:relative;
+  height:calc(100vh - 30px); /* leave taskbar */
+  padding:12px;
+  overflow:hidden;
+}
+
+.desktop-icons{
+  display:grid;
+  grid-template-columns: repeat(1,80px);
+  gap:20px;
+}
+
+.icon{
+  width:80px;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:6px;
+  border-radius:6px;
+}
+
+.icon img{width:48px;height:48px;display:block;margin-bottom:6px}
+.icon span{
+  color:#fff;
+  font-size:12px;
+  text-shadow:1px 1px 1px #000;
+}
+
+/* place resume icon centered in the middle of the desktop */
+/* (removed .icon.resume - resume desktop icon moved/removed) */
+
+/* ========== Windows ========== */
+.window{
+  position:absolute;
+  background:var(--xp-window-bg);
+  border:1px solid #0055ea;
+  border-radius:8px 8px 0 0;
+  box-shadow:0 0 10px rgba(0,0,0,0.35);
+  min-width:320px;
+  min-height:220px;
+  overflow:hidden;
+}
+
+.window-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px 10px;
+  background:linear-gradient(to right,var(--xp-blue-start),var(--xp-blue-end));
+  color:#fff;
+  border-radius:8px 8px 0 0;
+}
+
+.window-title{font-weight:bold; font-size:13px}
+.window-controls{display:flex;gap:6px;align-items:center}
+.window-controls button{
+  width:22px;height:18px;border-radius:2px;border:1px solid rgba(255,255,255,0.6);
+  background:linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(0,0,0,0.08));
+  display:inline-flex;align-items:center;justify-content:center;font-weight:bold;
+  color:#fff;cursor:pointer;font-size:12px;line-height:1;padding:0;
+}
+.window-controls .close{ background: linear-gradient(to bottom,#f26b6b,#d93b3b) }
+
+.window-content{padding:14px; color:#111; font-size:14px}
+
+/* maximized */
+.window.maximized{
+  top:0;left:0;width:100%;height:calc(100% - 30px);border-radius:0;
+}
+
+/* active window highlight */
+.window.active .window-header{ box-shadow: inset 0 -2px 6px rgba(0,0,0,0.12); }
+
+/* ========== Taskbar ========== */
+.taskbar{
+  position:fixed;bottom:0;left:0;right:0;height:36px;
+  background:linear-gradient(180deg,#2365e8 0%,#1B5ADA 100%);
+  display:flex;align-items:center;padding:0;z-index:2500;
+  box-shadow:0 -3px 6px rgba(0,0,0,0.35) inset;
+}
+
+.start-button{
+  display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:6px 0 0 6px;
+  margin-right:8px;border:1px solid #2d7c2c;background:linear-gradient(to bottom,#44a641,#368435);
+  color:#fff;font-weight:bold;cursor:pointer;height:100%;
+}
+.start-button img{width:auto;max-height:70%;display:block;filter:drop-shadow(1px 1px 1px rgba(0,0,0,0.6))}
+.start-button:active{transform:translateY(1px)}
+
+/* pinned icons (small) */
+.pinned {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 8px;
+}
+
+.pinned .pin-btn {
+  border: none; /* remove border unless you really need it */
+  background: transparent; /* no background unless specified */
+  padding: 0; /* no extra padding */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pinned .pin-btn img {
+  display: block;
+  width: 23px; /* control the image size directly */
+  height: auto;
+  background: white; /* the white background that covers *only the icon* */
+  border-radius: 4px; /* optional rounding */
+}
+
+.task-items{flex:1;display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;padding-right:8px}
+.system-tray{display:flex;align-items:center;gap:8px;margin-left:auto;margin-right:0;padding-right:0}
+.tray-panel{display:flex;align-items:center;gap:8px;padding:0 12px;background:linear-gradient(180deg,#24a5f9,#1099F3);height:100%;border-radius:4px}
+
+.clock{color:#fff;font-size:13px;text-shadow:1px 1px 1px rgba(0,0,0,0.6);line-height:36px;padding:0 8px}
+
+/* ========== Start Menu (XP accurate) ========== */
+.start-menu{
+  position:absolute;left:0;bottom:34px;width:400px;height:380px;
+  border:2px solid #316ac5;border-radius:8px;background:#f0f0f0;overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,0.45);z-index:3000;display:none;flex-direction:column;
+  transform-origin:left bottom; /* for animation */
+}
+
+/* open animation */
+.start-menu.open{
+  display:flex;
+  animation: startOpen .18s ease forwards;
+}
+@keyframes startOpen{
+  from {opacity:0; transform:scale(.98) translateY(8px);} 
+  to {opacity:1; transform:scale(1) translateY(0);} 
+}
+
+.start-user-banner{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;background:linear-gradient(to right,#245edb,#3c87ff);
+  color:#fff;font-weight:bold;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.3);
+}
+.start-avatar{width:36px;height:36px;border-radius:4px;border:1px solid rgba(255,255,255,0.5);background:#fff}
+.start-username{text-shadow:1px 1px 2px rgba(0,0,0,0.4)}
+
+.start-columns{display:flex;height:100%}
+.start-left{width:52%;background:linear-gradient(to bottom,#3a6ee0,#295bcc);color:#fff;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
+.start-right{width:48%;background:linear-gradient(to bottom,#f4f4f4,#e4e4e4);padding:10px;border-left:1px solid #b6b6b6;display:flex;flex-direction:column;justify-content:space-between}
+
+.start-programs,.start-system,.start-actions{list-style:none;margin:0;padding:0}
+.start-programs li{margin-bottom:8px}
+.start-left .start-item{display:flex;align-items:center;gap:8px;padding:6px;border-radius:4px;background:rgba(255,255,255,0.06);cursor:pointer;border:none;color:#fff;text-align:left}
+.start-left .start-item img{width:20px;height:20px}
+.start-left .start-item:hover{background:rgba(255,255,255,0.18)}
+
+.start-right .start-item{display:flex;align-items:center;gap:8px;padding:6px;border-radius:4px;background:transparent;border:none;color:#000;cursor:pointer;text-align:left}
+.start-right .start-item img{width:20px;height:20px}
+.start-right .start-item:hover{background:#cfe1ff}
+
+.divider{height:1px;background:#bfbfbf;margin:10px 0}
+
+.start-bottom{display:flex;gap:8px;justify-content:space-between}
+.start-bottom .start-item{flex:1;justify-content:center}
+
+/* ========== Spotify widget (top-right) ========== */
+.spotify-widget{
+  position:fixed;right:16px;top:16px;
+}
+
+/* ========== Responsive tweaks ========== */
+@media (max-width:640px){
+  .start-menu{width:320px;height:360px}
+  .spotify-widget{display:none}
+}
+
+/* small utility */
+button:focus{outline:2px solid rgba(0,100,255,0.25)}

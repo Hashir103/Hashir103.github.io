@@ -1,325 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="shortcut icon" href="/assets/mcdonlads.jpeg" type="image/jpg">
-    <title>Hashir's Resume</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hashir's Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/placeholder.jpeg">
+
 </head>
 <body>
-    <div id="boot-screen"></div>
+  <div class="desktop" id="desktop">
+    <!-- Desktop icons: About Me, My Projects, Resume (center) -->
+    <div class="desktop-icons" aria-hidden="true">
+      <div class="icon" title="About Me" onclick="openWindow('about')">
+        <img src="images/my-computer.png" alt="About icon">
+        <span>About Me</span>
+      </div>
 
-    <div id="popup">
-      <img src="/images/lumon.jpg" alt="Popup Image">
+      <div class="icon" title="Resume" onclick="openWindow('resume')">
+        <img src="images/folder.png" alt="Resume icon">
+        <span>Resume</span>
+      </div>
     </div>
 
-    <div id="blinking-cursor"></div>
-    
-    <!-- Resume container with rolodex design -->
-    <div id="resume-container">
-        <div class="rolodex">
-            <div class="divider divider-1"></div>
-            <!-- Top tabs -->
-            <div class="rolodex-tabs">
-                <div class="tab" data-tab="projects">Projects</div>
-                <div class="tab" data-tab="skills">Skills</div>
-                <div class="tab active" data-tab="about">About Me</div>
-                <div class="tab" data-tab="experience">Experience</div>
-            </div>
-            
-            <!-- Top card section -->
-            <div class="card-top">
-              <!-- Projects Content -->
-              <div class="tab-content" id="projects-content">
-                <h3>Projects</h3>
-                <div class="project-item">
-                  <h4>Is it a Deal? | <a href="https://github.com/Hashir103/hashir-onboarding" target="_blank">Project Link</a></h4>
-                  <p>NextJS, React, MongoDb, Ticketmaster API</p>
-                </div>
-                <div class="project-item">
-                  <h4>Nipiy | <a href="https://github.com/Hashir103/nipiy" target="_blank">Project Link</a></h4>
-                  <p>Dart, Flutter, Google Maps API</p>
-                </div>
-                <div class="project-item">
-                  <h4>Food4All | <a href="https://devpost.com/software/food4all-end-food-insecurity" target="_blank">Project Link</a></h4>
-                  <p>TypeScript, Google Maps API</p>
-                </div>
-                <div class="project-item">
-                  <h4>Player Value Rating | <a href="https://devpost.com/software/player-value-rating" target="_blank">Project Link</a></h4>
-                  <p>Python, Pandas, Bootstrap, Flask</p>
-                </div>
-              </div>
-              
-              <!-- Skills Content -->
-              <div class="tab-content" id="skills-content">
-                <h3>Technical Skills</h3>
-                <div class="skills-grid">
-                  <div class="skill-category">
-                    <h4>Languages</h4>
-                    <p>JavaScript, Python, Dart, C#</p>
-                  </div>
-                  <div class="skill-category">
-                    <h4>Frameworks</h4>
-                    <p>React, Angular, Django, Flask, Flutter</p>
-                  </div>
-                  <div class="skill-category">
-                    <h4>Libraries</h4>
-                    <p>ChakraUI, Pandas, SKLearn, Firebase, Google Maps API</p>
-                  </div>
-                   <div class="skill-category">
-                    <h4>Tools</h4>
-                    <p>Git, Bash, Microsoft Azure, Google Cloud, Adobe Flash, Unity, Ubuntu</p>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- About Me Content -->
-              <div class="tab-content active" id="about-content">
-                <h3>About Me</h3>
-                <p>My name's Hashir! I'm a Queen's University student (class of 2026). I love basketball (Golden State Warriors) and football (Manchester City). I also love map-painting games like Europa Universalis IV and shows like Breaking Bad and Game of Thrones.</p>
-                <br>
-                <p>Feel free to connect with me on any of my social links : ). My website was inspired by the Apple TV show Severance.</p>
-              </div>
-              
-              <!-- Experience Content -->
-              <div class="tab-content" id="experience-content">
-                <h3>Experience</h3>
-                <div class="experience-item">
-                  <h4>Software Developer Intern</h4>
-                  <p class="experience-period">May 2024 - June 2025</p>
-                  <p>Centre for Advanced Computing at Queen's University</p>
-                </div>
-                <div class="experience-item">
-                  <h4>IT Support Staff</h4>
-                  <p class="experience-period">September 2023 - April 2024</p>
-                  <p>Queen's University</p>
-                </div>
-                <div class="experience-item">
-                  <h4>Data Quality Intern</h4>
-                  <p class="experience-period">May 2023 - November 2023</p>
-                  <p>Cohere</p>
-                </div>
-                <div class="experience-item">
-                  <h4>Full Stack Developer Intern</h4>
-                  <p class="experience-period">April 2023 - August 2023</p>
-                  <p>City of Kingston</p>
-                </div>
-                <div class="experience-item">
-                  <h4>Junior Programs Instructor</h4>
-                  <p class="experience-period">May 2022 - August 2022</p>
-                  <p>University of Toronto</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Bottom card section -->
-            <div class="card-bottom">
-              <div class="divider divider-2"></div>
-              
-              <!-- Projects Bottom Content -->
-              <div class="bottom-content" id="projects-bottom">
-                <div class="portrait-container">
-                  <div class="portrait-slot-wide">
-                    <img src="/images/projects_1.jpg" alt="Project Image 1">
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Skills Bottom Content -->
-              <div class="bottom-content" id="skills-bottom">
-                <div class="portrait-container">
-                  <div class="portrait-slot-wide-skills">
-                    <img src="/images/skills.png" alt="Skill Image 1">
-                  </div>
-                </div>
-              </div>
-              
-              <!-- About Bottom Content -->
-              <div class="bottom-content active" id="about-bottom">
-                <div class="portrait-container">
-                  <div class="portrait-slot">
-                    <img src="/images/aboutme_1.jpeg" alt="">
-                  </div>
-                  <div class="portrait-slot">
-                    <img src="/images/aboutme_2.png" alt="About Image 2">
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Experience Bottom Content -->
-              <div class="bottom-content" id="experience-bottom">
-                <div class="portrait-container">
-                  <div class="portrait-slot-wide">
-                    <img src="/images/experience.jpg" alt="Experience Image 1">
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Connectors between cards -->
-            <div class="connector"></div>
-            <div class="connector-2"></div>
 
-            <!-- Left side index marks -->
-            <div class="index-marks">
-                <div class="mark" style="margin: -6px 0;"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark" style="margin: -6px 0;"></div>
-            </div>
-            
-            <!-- Right side index marks -->
-            <div class="index-marks-right">
-                <div class="mark" style="margin: -6px 0;"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark"></div>
-                <div class="mark" style="margin: -6px 0;"></div>
-            </div>
-            
-            <!-- Bottom tabs -->
-            <div class="bottom-tabs">
-                <div class="bottom-tab"><a href="https://github.com/hashir103" target="_blank">GitHub</a></div>
-                <div class="bottom-tab"><a href="https://linkedin.com/in/hashir-sami" target="_blank">LinkedIn</a></div>
-                <div class="bottom-tab"><a href="mailto:hashirsami@hotmail.ca" target="_blank">Email</a></div>
-                <div class="bottom-tab"><a href="http://hashir.tech/assets/Hashir_Sami.pdf" target="_blank">Resume</a></div>
-            </div>
+    <!-- About Window -->
+    <div id="aboutWindow" class="window" style="display:none; left:80px; top:80px">
+      <div class="window-header">
+        <span class="window-title">About Me</span>
+        <div class="window-controls">
+          <button class="minimize" title="Minimize">_</button>
+          <button class="maximize" title="Maximize">□</button>
+          <button class="close" title="Close" onclick="closeWindow('about')">×</button>
         </div>
+      </div>
+      <div class="window-content">
+        <h2>hi</h2>
+        <p>my name is Hashir. </p>
+        <p>studying computing at queen's. graduating in december 2025.</p>
+        <p>big fan of the nba, premier league, league of legends, and history.</p>
+        <br>
+        <pre>Art by valkyrie
+  ____
+ /\' .\    _____
+/: \___\  / .  /\
+\' / . / /____/..\
+ \/___/  \'  '\  /
+          \'__'\/
+        </pre>
+      </div>
     </div>
 
-    <script>
-      // Tab switching functionality
-      function initializeTabs() {
-          const tabs = document.querySelectorAll('.tab');
-          const tabContents = document.querySelectorAll('.tab-content');
-          const bottomContents = document.querySelectorAll('.bottom-content');
-          
-          tabs.forEach(tab => {
-              tab.addEventListener('click', () => {
-                  const targetTab = tab.getAttribute('data-tab');
-                  
-                  // Remove active class from all tabs and content
-                  tabs.forEach(t => t.classList.remove('active'));
-                  tabContents.forEach(content => content.classList.remove('active'));
-                  bottomContents.forEach(content => content.classList.remove('active'));
-                  
-                  // Add active class to clicked tab
-                  tab.classList.add('active');
-                  
-                  // Show corresponding top content
-                  const targetContent = document.getElementById(targetTab + '-content');
-                  if (targetContent) {
-                      targetContent.classList.add('active');
-                  }
-                  
-                  // Show corresponding bottom content
-                  const targetBottomContent = document.getElementById(targetTab + '-bottom');
-                  if (targetBottomContent) {
-                      targetBottomContent.classList.add('active');
-                  }
-              });
-          });
-      }
+    <!-- Resume Window (embeds PDF) -->
+    <div id="resumeWindow" class="window" style="display:none; left:50%; top:50%; transform:translate(-50%,-50%); width:800px; height:600px;">
+      <div class="window-header">
+        <span class="window-title">Resume</span>
+        <div class="window-controls">
+          <button class="minimize" title="Minimize">_</button>
+          <button class="maximize" title="Maximize">□</button>
+          <button class="close" title="Close" onclick="closeWindow('resume')">×</button>
+        </div>
+      </div>
+      <div class="window-content" style="padding:0;height:calc(100% - 46px)">
+        <!-- embed PDF cleanly -->
+        <iframe src="https://hashir.tech/assets/Hashir_Sami.pdf" style="width:100%;height:100%;border:none;"></iframe>
+      </div>
+    </div>
 
-      const bootText = [
-          "Open interface: 0x100000531",
-          "parseElements: keyboard: 0 digitizer: 12 pointer: 0 0 scroll: 0 led: 0",
-          "parseElements: vendor: 2",
-          "HE2N_Key Does Not Exist, use KSMCPStatesIGPU for Internal GPU",
-          "GPU = IGPU Initialized, Control ID 16",
-          "Exited AGPMController::start()",
-          "-- 0x5c30 -- 0xe000 -- 0x7e00 ****",
-          "initWithTask",
-          "start",
-          "**** -- ON -> ON (thread: 0xf440)",
-          "Speaker has output streams: 1",
-          "Reuse output buffer idx:1 dev:Speaker offset:13c000 size:41000",
-          "Codec Output has output streams: 1",
-          "Reuse output buffer idx:2 dev:Codec Output offset:184000 size:20800",
-          "Digital Mic has output streams: 0",
-          "Codec Input has output streams: 0",
-          "Total output descriptors: 3",
-          "Device:Speaker using output stream idx:1",
-          "Registered DeviceUID:Speaker Index:1",
-          "ActuatorDeviceUserClient::start Entered"
-      ];
-  
-      const bootScreen = document.getElementById("boot-screen");
-      const popup = document.getElementById("popup");
-      const blinkingCursor = document.getElementById("blinking-cursor");
-      const resumeContainer = document.getElementById("resume-container");
-      let index = 0;
-  
-      function printLine() {
-          if (index < bootText.length) {
-              const newLine = document.createElement("div");
-              newLine.textContent = bootText[index];
-              bootScreen.appendChild(newLine);
-              index++;
-              setTimeout(printLine, 100);
-          } else {
-              bootScreen.style.display = "none";
-              popup.style.display = "flex";
-              setTimeout(() => {
-                  popup.classList.add("show");
-              }, 0);
-  
-              setTimeout(showBlinkingCursor, 2000);
-          }
-      }
-  
-      function showBlinkingCursor() {
-          popup.style.display = "none";
-  
-          blinkingCursor.style.display = "block";
-          blinkingCursor.textContent = ">";
-  
-          let blinkCount = 0;
-          const blinkInterval = setInterval(() => {
-              blinkingCursor.classList.toggle("blink");
-              blinkCount++;
-  
-              if (blinkCount === 6) {
-                  clearInterval(blinkInterval);
-                  blinkingCursor.classList.remove("blink");
-                  blinkingCursor.textContent = "> Loading Hashir's Resume...";
-                  
-                  // After showing the loading message, wait 2 seconds then hide cursor and show content
-                  setTimeout(() => {
-                      blinkingCursor.style.display = "none";
-                      resumeContainer.style.display = "block";
-                      // Initialize tabs after the resume is shown
-                      initializeTabs();
-                  }, 300);
-              }
-          }, 300);
-      }
-  
-      // Initially hide the resume container
-      resumeContainer.style.display = "none";
-      
-      // Initialize tabs immediately since boot screen is commented out
-      document.addEventListener('DOMContentLoaded', () => {
-          initializeTabs();
-      });
-      
-      setTimeout(printLine, 300);
-    </script>
+  </div><!-- end desktop -->
+
+  <!-- Spotify player (fixed top-right) -->
+  <div class="spotify-widget" aria-hidden="false" title="Spotify">
+         <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4d81FmmIf9ERT1E2M5H07W?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar" role="toolbar" aria-label="Taskbar">
+    <button class="start-button" id="startButton" aria-haspopup="true" aria-expanded="false" aria-controls="startMenu">
+      <img src="images/start.png" alt="">
+      <span>Start</span>
+    </button>
+
+    <div class="pinned" aria-hidden="false">
+      <!-- pinned: GitHub -->
+      <button class="pin-btn" title="GitHub — hashir103" onclick="window.open('https://github.com/hashir103','_blank')">
+        <img src="images/icon-github.png" alt="GitHub">
+      </button>
+      <!-- pinned: LinkedIn -->
+      <button class="pin-btn" title="LinkedIn — Hashir Sami" onclick="window.open('https://linkedin.com/in/hashir-sami','_blank')">
+        <img src="images/icon-linkedin.png" alt="LinkedIn">
+      </button>
+    </div>
+
+    <div class="task-items" id="taskItems" aria-live="polite">
+      <!-- dynamic task buttons will appear here for open windows -->
+    </div>
+
+    <div class="system-tray" aria-hidden="false">
+      <div class="tray-panel" role="group" aria-label="System tray">
+        <div class="clock" id="clock">12:00 PM</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Menu -->
+  <div id="startMenu" class="start-menu" role="menu" aria-hidden="true" aria-label="Start menu">
+    <div class="start-user-banner">
+      <img class="start-avatar" src="images/user.jpg" alt="Hashir avatar">
+      <div class="start-username">Hashir</div>
+    </div>
+
+    <div class="start-columns">
+      <!-- Left (blue) program list -->
+      <div class="start-left">
+        <ul class="start-programs" aria-label="Programs">
+          <li>
+            <button class="start-item" data-action="clubpenguin" title="Club Penguin">
+              <img src="images/icon-clubpenguin.webp" alt=""> <span>Hashir's Club Penguin</span>
+            </button>
+          </li>
+          <li>
+            <button class="start-item" data-action="worldcars" title="World of Cars Chat">
+              <img src="images/icon-worldcars.png" alt=""> <span>Cars Online Chatroom</span>
+            </button>
+          </li>
+          <li>
+            <button class="start-item" data-action="jellyfin" title="Jellyfin">
+              <img src="images/icon-jellyfin.png" alt=""> <span>My Media Server</span>
+            </button>
+          </li>
+           <li>
+            <button class="start-item" data-action="youtube" title="Youtube">
+              <img src="images/icon-youtube.png" alt=""> <span>My YouTube</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right (grey) system list -->
+      <div class="start-right">
+        <ul class="start-system" aria-label="System">
+            <li><button class="start-item" data-action="mycomputer"><img src="images/my-computer.png" alt=""> <span>My Computer</span></button></li>
+          <li><button class="start-item" data-action="myresume"><img src="images/folder.png" alt=""> <span>My Documents</span></button></li>
+        </ul>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="start-bottom" role="group" aria-label="Power options">
+          <button class="start-item logoff" data-action="logout"><img src="images/icon-logoff.png" alt=""> <span>Log Off</span></button>
+          <button class="start-item shutdown" data-action="shutdown"><img src="images/icon-shutdown.png" alt=""> <span>Turn Off Computer</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="main.js"></script>
 </body>
 </html>
