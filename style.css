@@ -137,7 +137,15 @@ body{
 }
 
 .task-items{flex:1;display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;padding-right:8px}
-.system-tray{display:flex;align-items:center;gap:8px;margin-left:auto;margin-right:0;padding-right:0}
+
+.system-tray{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto; /* Ensures the tray is pushed to the far right */
+  margin-right:0;
+  padding-right:0
+}
 .tray-panel{display:flex;align-items:center;gap:8px;padding:0 12px;background:linear-gradient(180deg,#24a5f9,#1099F3);height:100%;border-radius:4px}
 
 .clock{color:#fff;font-size:13px;text-shadow:1px 1px 1px rgba(0,0,0,0.6);line-height:36px;padding:0 8px}
@@ -197,7 +205,7 @@ body{
   .window{
     max-width:90vw;
     max-height:80vh;
-    /* OVERRIDE: Center ALL windows on medium screens, overriding inline styles like left:80px; top:80px */
+    /* OVERRIDE: Center ALL windows on medium screens, overriding inline styles */
     left:50% !important; 
     top:50% !important;
     transform: translate(-50%, -50%) !important;
@@ -234,8 +242,8 @@ body{
 }
 
 @media (max-width:480px){
+  /* Window tweaks */
   .window{
-    /* The 1024px query handles centering. These are dimension/font size tweaks. */
     width:90vw !important;
     height:70vh !important;
     min-width:auto;
@@ -256,9 +264,30 @@ body{
   .icon img{width:36px;height:36px;}
   .icon span{font-size:10px;}
 
-  .taskbar{height:32px;padding:0 4px;}
-  .start-button{padding:0 8px;gap:4px;font-size:12px;}
+  /* ========== Taskbar Fixes for Mobile <= 480px ========== */
+  .taskbar{
+    height:32px;
+    padding:0 4px; /* Reduced padding for tighter fit */
+  }
+  .start-button{
+    padding:0 8px; /* Reduced padding on the button */
+    gap:4px;
+    font-size:12px;
+  }
+  .pinned{
+    margin-right: 4px; /* Tighter space after pinned icons */
+  }
   .pinned .pin-btn img{width:20px;}
+  
+  .tray-panel{
+    padding:0 8px; /* Reduced padding on the tray */
+  }
+  .clock{
+    font-size: 12px;
+    line-height: 32px; /* Adjusted line-height to fit new taskbar height */
+    padding: 0 4px;
+  }
+  /* ======================================================= */
 }
 
 /* ========== Small utility ========== */
