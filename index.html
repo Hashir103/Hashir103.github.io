@@ -27,7 +27,7 @@
 
 
     <!-- About Window -->
-    <div id="aboutWindow" class="window" style="display:none; left:80px; top:80px">
+    <div id="aboutWindow" class="window" style="display:none; left:105px; top:95px">
       <div class="window-header">
         <span class="window-title">About Me</span>
         <div class="window-controls">
@@ -51,6 +51,21 @@
  \/___/  \'  '\  /
           \'__'\/
         </pre>
+      </div>
+    </div>
+
+    <!-- YouTube Window -->
+    <div id="youtubeWindow" class="window youtube-window" style="display:none; left:611px; top:264px; width:560px; height:347px;">
+      <div class="window-header">
+        <span class="window-title">Latest Video</span>
+        <div class="window-controls">
+          <button class="minimize" title="Minimize">_</button>
+          <button class="maximize" title="Maximize" disabled>□</button>
+          <button class="close" title="Close" onclick="closeWindow('youtube')">×</button>
+        </div>
+      </div>
+      <div class="window-content" style="padding:0;height:315px">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Wyo-T5UEd1I?si=Rigv0193FP33UaXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </div>
 

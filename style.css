@@ -1,3 +1,7 @@
+.youtube-window{
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 72px);
+}
 /* ========== Variables ========== */
 :root{
   --taskbar-blue:#245edb;
@@ -85,6 +89,54 @@ body{
 .window-controls .close{ background: linear-gradient(to bottom,#f26b6b,#d93b3b) }
 
 .window-content{padding:14px; color:#111; font-size:14px}
+
+.youtube-fallback{
+  height:calc(100% - 0px);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:stretch;
+  justify-content:flex-start;
+}
+
+.youtube-preview{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 9;
+  border:1px solid #9b9b9b;
+  border-radius:6px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  text-decoration:none;
+}
+
+.youtube-preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.youtube-play-badge{
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(0,0,0,0.72);
+  color:#fff;
+  font-weight:bold;
+  font-size:13px;
+}
+
+.youtube-note{
+  margin:0;
+  color:#222;
+  font-size:13px;
+}
 
 /* maximized */
 .window.maximized{
@@ -205,10 +257,11 @@ body{
   .window{
     max-width:90vw;
     max-height:80vh;
-    /* OVERRIDE: Center ALL windows on medium screens, overriding inline styles */
-    left:50% !important; 
-    top:50% !important;
-    transform: translate(-50%, -50%) !important;
+  }
+
+  .youtube-window{
+    width:min(560px, 90vw) !important;
+    height:min(390px, 72vh) !important;
   }
 
   /* iframe inside windows (Resume) */
@@ -233,6 +286,12 @@ body{
     width: 95vw !important;
     height: 90vh !important;
   }
+
+    #youtubeWindow {
+      width: 94vw !important;
+      height: 56vw !important;
+      min-height: 240px !important;
+    }
 }
 
 

@@ -35,7 +35,7 @@ function closeWindow(id) {
 }
 
 function createTaskbarButton(id) {
-  const map = { about: 'About', resume: 'Resume' };
+  const map = { about: 'About', resume: 'Resume', youtube: 'YouTube' };
   const taskItems = document.getElementById('taskItems');
   const btn = document.createElement('button');
   btn.className = 'taskbar-item';
@@ -196,7 +196,7 @@ document.addEventListener('click', (e)=>{
   if (action === 'clubpenguin') window.open('https://play.hashir.tech','_blank');
   else if (action === 'worldcars') window.open('https://hashir.tech/beta/','_blank');
   else if (action === 'jellyfin') window.open('https://jellyfin.hashir.tech/','_blank');
-    else if (action === 'youtube') window.open('https://www.youtube.com/@hashirs','_blank');
+    else if (action === 'youtube') openWindow('youtube');
 
   // system actions map to local windows
   else if (action === 'mycomputer') openWindow('about');
@@ -234,7 +234,12 @@ startMenu.addEventListener('keydown', (e) => {
 window.addEventListener('DOMContentLoaded', () => {
     const win = document.getElementById('aboutWindow');
     openWindow('about');
-    win.style.left = '20%';
-    win.style.top = '30%';
+  win.style.left = '7%';
+  win.style.top = '10%';
+
+  const youtubeWin = document.getElementById('youtubeWindow');
+  openWindow('youtube');
+  youtubeWin.style.left = '38%';
+  youtubeWin.style.top = '40%';
 });
 
