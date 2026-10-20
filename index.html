@@ -123,7 +123,7 @@
   <div class="taskbar" role="toolbar" aria-label="Taskbar">
     <button class="start-button" id="startButton" aria-haspopup="true" aria-expanded="false" aria-controls="startMenu">
       <img src="images/start.png" alt="">
-      <span>Start</span>
+      <span>start</span>
     </button>
 
     <div class="pinned" aria-hidden="false">
@@ -150,7 +150,7 @@
     </div>
   </div>
 
-  <!-- Start Menu -->
+  <!-- Start Menu (XP Luna layout) -->
   <div id="startMenu" class="start-menu" role="menu" aria-hidden="true" aria-label="Start menu">
     <div class="start-user-banner">
       <img class="start-avatar" src="images/user.jpg" alt="Hashir avatar">
@@ -158,25 +158,32 @@
     </div>
 
     <div class="start-columns">
-      <!-- Left (blue) program list -->
+      <!-- Left (white) program list: pinned items on top, then the rest -->
       <div class="start-left">
-        <ul class="start-programs" aria-label="Programs">
+        <ul class="start-programs" aria-label="Pinned programs">
           <li>
-            <button class="start-item" data-action="clubpenguin" title="Club Penguin">
-              <img src="images/icon-clubpenguin.webp" alt=""> <span>Hashir's Club Penguin</span>
+            <button class="start-item pinned-item" data-action="clubpenguin" title="Club Penguin">
+              <img src="images/icon-clubpenguin.webp" alt="">
+              <span class="start-text"><b>Club Penguin</b><small>Hashir's private server</small></span>
             </button>
           </li>
+          <li>
+            <button class="start-item pinned-item" data-action="jellyfin" title="Jellyfin">
+              <img src="images/icon-jellyfin.png" alt="">
+              <span class="start-text"><b>My Media Server</b><small>Jellyfin</small></span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="start-sep" aria-hidden="true"></div>
+
+        <ul class="start-programs" aria-label="Programs">
           <li>
             <button class="start-item" data-action="worldcars" title="World of Cars Chat">
               <img src="images/icon-worldcars.png" alt=""> <span>Cars Online Chatroom</span>
             </button>
           </li>
           <li>
-            <button class="start-item" data-action="jellyfin" title="Jellyfin">
-              <img src="images/icon-jellyfin.png" alt=""> <span>My Media Server</span>
-            </button>
-          </li>
-           <li>
             <button class="start-item" data-action="youtube" title="Youtube">
               <img src="images/icon-youtube.png" alt=""> <span>Personal YouTube</span>
             </button>
@@ -194,20 +201,25 @@
         </ul>
       </div>
 
-      <!-- Right (grey) system list -->
+      <!-- Right (light blue) places list -->
       <div class="start-right">
-        <ul class="start-system" aria-label="System">
-            <li><button class="start-item" data-action="mycomputer"><img src="images/my-computer.png" alt=""> <span>My Computer</span></button></li>
-          <li><button class="start-item" data-action="myresume"><img src="images/folder.png" alt=""> <span>My Documents</span></button></li>
+        <ul class="start-system" aria-label="Places">
+          <li><button class="start-item strong" data-action="myresume"><img src="images/folder.png" alt=""> <span>My Documents</span></button></li>
+          <li><button class="start-item strong" data-action="mycomputer"><img src="images/my-computer.png" alt=""> <span>My Computer</span></button></li>
         </ul>
 
-        <div class="divider" aria-hidden="true"></div>
+        <div class="start-sep" aria-hidden="true"></div>
 
-        <div class="start-bottom" role="group" aria-label="Power options">
-          <button class="start-item logoff" data-action="logout"><img src="images/icon-logoff.png" alt=""> <span>Log Off</span></button>
-          <button class="start-item shutdown" data-action="shutdown"><img src="images/icon-shutdown.png" alt=""> <span>Turn Off Computer</span></button>
-        </div>
+        <ul class="start-system" aria-label="Links">
+          <li><button class="start-item" data-action="github"><img class="badge" src="images/icon-github.png" alt=""> <span>GitHub</span></button></li>
+          <li><button class="start-item" data-action="linkedin"><img class="badge" src="images/icon-linkedin.png" alt=""> <span>LinkedIn</span></button></li>
+        </ul>
       </div>
+    </div>
+
+    <div class="start-footer" role="group" aria-label="Power options">
+      <button class="start-item" data-action="logout"><img src="images/icon-logoff.png" alt=""> <span>Log Off</span></button>
+      <button class="start-item" data-action="shutdown"><img src="images/icon-shutdown.png" alt=""> <span>Turn Off Computer</span></button>
     </div>
   </div>
 

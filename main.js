@@ -42,34 +42,48 @@ function closeWindow(id) {
   if (btn) btn.remove();
 }
 
+const TASKBAR_INFO = {
+  about:   { label: 'About Me',     icon: 'images/my-computer.png' },
+  resume:  { label: 'Resume',       icon: 'images/folder.png' },
+  youtube: { label: 'Latest Video', icon: 'images/icon-youtube.png' },
+};
+
 function createTaskbarButton(id) {
-  const map = { about: 'About', resume: 'Resume', youtube: 'YouTube' };
-  const taskItems = document.getElementById('taskItems');
+  const info = TASKBAR_INFO[id] || { label: id, icon: '' };
   const btn = document.createElement('button');
   btn.className = 'taskbar-item';
-  btn.setAttribute('data-window', id);
-  btn.style.height = '22px';
-  btn.style.minWidth = '100px';
-  btn.style.display = 'flex';
-  btn.style.alignItems = 'center';
-  btn.style.gap = '6px';
-  btn.style.padding = '0 8px';
-  btn.style.cursor = 'pointer';
-  btn.style.borderRadius = '3px';
-  btn.style.background = 'linear-gradient(to bottom,#4B9FEA,#338CF2)';
-  btn.style.color = '#fff';
-  btn.textContent = map[id] || id;
+  btn.dataset.window = id;
+  btn.title = info.label;
+  btn.innerHTML = `<img src="${info.icon}" alt=""><span></span>`;
+  btn.querySelector('span').textContent = info.label;
+
+  // XP behaviour: click the focused window's button to minimize it, otherwise restore/focus it
   btn.onclick = () => {
     const w = document.getElementById(id + 'Window');
     if (!w) return;
     if (w.style.display === 'none') openWindow(id);
+    else if (w.classList.contains('active')) minimizeWindow(w);
     else {
-      // if visible, bring to front
       focusWindow(w);
-      w.style.zIndex = ++zIndex;
+      if (isStackedLayout()) w.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-  taskItems.appendChild(btn);
+  document.getElementById('taskItems').appendChild(btn);
+  syncTaskbar();
+}
+
+function minimizeWindow(el) {
+  el.style.display = 'none';
+  el.classList.remove('active');
+  syncTaskbar();
+}
+
+// the taskbar button of the focused, visible window gets the pressed look
+function syncTaskbar() {
+  document.querySelectorAll('.taskbar-item').forEach(btn => {
+    const w = document.getElementById(btn.dataset.window + 'Window');
+    btn.classList.toggle('active', !!w && w.style.display !== 'none' && w.classList.contains('active'));
+  });
 }
 
 /* ---------- Draggable & Focus ---------- */
@@ -112,9 +126,11 @@ function makeDraggable(element) {
 
 function focusWindow(el){
   document.querySelectorAll('.window').forEach(w=>w.classList.remove('active'));
-  if (!el) return;
-  el.classList.add('active');
-  el.style.zIndex = ++zIndex;
+  if (el) {
+    el.classList.add('active');
+    el.style.zIndex = ++zIndex;
+  }
+  syncTaskbar();
 }
 
 /* ---------- Window controls (minimize/max/close) ---------- */
@@ -130,7 +146,7 @@ function setupWindowControls(el, id) {
 
   if (btnMin) btnMin.addEventListener('click', (e)=> {
     e.stopPropagation();
-    el.style.display = 'none';
+    minimizeWindow(el);
   });
 
   if (btnClose) btnClose.addEventListener('click', (e)=> {
@@ -221,6 +237,8 @@ document.addEventListener('click', (e)=>{
   else if (action === 'jellyfin') window.open('https://jellyfin.hashir.tech/','_blank');
   else if (action === 'dj') window.open('https://dj.hashir.tech','_blank');
   else if (action === 'mm2') window.open('https://mm2.hashir.tech','_blank');
+  else if (action === 'github') window.open('https://github.com/hashir103','_blank');
+  else if (action === 'linkedin') window.open('https://linkedin.com/in/hashir-sami','_blank');
   else if (action === 'youtube') window.open('https://www.youtube.com/@hashirlifestuff/videos','_blank');
 
   // system actions map to local windows

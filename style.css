@@ -196,25 +196,35 @@ a.icon{text-decoration:none}
 /* ========== Taskbar ========== */
 .taskbar{
   position:fixed;bottom:0;left:0;right:0;height:36px;
-  background:linear-gradient(180deg,#2365e8 0%,#1B5ADA 100%);
+  /* the Luna taskbar gradient */
+  background:linear-gradient(to bottom,#1f2f86 0%,#3165c4 3%,#3682e5 6%,#4490e6 10%,#3883e5 12%,#2b71e0 15%,#2663da 18%,#235bd6 20%,#2258d5 23%,#2157d6 38%,#245ddb 54%,#2562df 86%,#245fdc 89%,#2158d4 92%,#1d4ec0 95%,#1941a5 98%);
   display:flex;align-items:center;padding:0;z-index:2500;
-  box-shadow:0 -3px 6px rgba(0,0,0,0.35) inset;
+  font-family:var(--font);
 }
 
 .start-button{
-  display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:6px 0 0 6px;
-  margin-right:8px;border:1px solid #2d7c2c;background:linear-gradient(to bottom,#44a641,#368435);
-  color:#fff;font-weight:bold;cursor:pointer;height:100%;
+  display:flex;align-items:center;gap:5px;padding:0 20px 0 10px;
+  border:none;border-radius:0 12px 12px 0;margin-right:8px;
+  background:linear-gradient(to bottom,#5eac56 0%,#3f9b3a 10%,#3c983b 45%,#308b30 55%,#2b862b 90%,#3a8f3a 100%);
+  box-shadow:inset -2px -1px 3px rgba(0,0,0,0.25),inset 1px 1px 2px rgba(255,255,255,0.35),1px 0 2px rgba(0,0,0,0.3);
+  color:#fff;font-family:"Trebuchet MS",var(--font);font-style:italic;font-weight:bold;font-size:19px;
+  text-shadow:1px 1px 2px rgba(0,0,0,0.6);cursor:pointer;height:100%;
 }
-.start-button img{width:auto;max-height:70%;display:block;filter:drop-shadow(1px 1px 1px rgba(0,0,0,0.6))}
+.start-button:hover{filter:brightness(1.08)}
+.start-button[aria-expanded="true"]{background:linear-gradient(to bottom,#2b862b 0%,#308b30 45%,#3c983b 55%,#3f9b3a 90%)}
+.start-button img{width:auto;max-height:62%;display:block;filter:drop-shadow(1px 1px 1px rgba(0,0,0,0.6))}
 .start-button:active{transform:translateY(1px)}
 
-/* pinned icons (small) */
+/* quick launch (pinned icons), with the etched divider XP draws on its right */
 .pinned {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-right: 8px;
+  gap: 6px;
+  height: 100%;
+  padding: 0 8px 0 2px;
+  margin-right: 4px;
+  border-right: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 1px 0 0 rgba(255,255,255,0.2);
 }
 
 .pinned .pin-btn {
@@ -227,73 +237,142 @@ a.icon{text-decoration:none}
   cursor: pointer;
 }
 
+.pinned .pin-btn:hover img { box-shadow: 0 0 0 2px rgba(255,255,255,0.35); }
 .pinned .pin-btn img {
   display: block;
-  width: 23px;
+  width: 20px;
   height: auto;
   background: white;
   border-radius: 4px;
 }
 
-.task-items{flex:1;display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;padding-right:8px}
+.task-items{flex:1;display:flex;align-items:center;gap:3px;min-width:0;height:100%;overflow:hidden;padding:0 6px 0 4px}
+
+/* window buttons on the taskbar */
+.taskbar-item{
+  flex:0 1 160px;min-width:0;height:26px;
+  display:flex;align-items:center;gap:6px;padding:0 8px;
+  border:none;border-radius:3px;
+  background:#3c81f3;
+  box-shadow:inset -1px 0 rgba(0,0,0,0.3),inset 1px 1px 1px rgba(255,255,255,0.2);
+  color:#fff;font-family:var(--font);font-size:12px;text-align:left;cursor:pointer;
+}
+.taskbar-item img{width:16px;height:16px;flex-shrink:0;object-fit:contain}
+.taskbar-item span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.taskbar-item:hover{background:#53a3ff}
+/* the focused window's button looks pressed in */
+.taskbar-item.active{
+  background:#1e52b7;
+  box-shadow:inset 0 0 1px 1px rgba(0,0,0,0.2),inset 1px 0 1px #000;
+}
+.taskbar-item.active:hover{background:#3576f3}
+.taskbar-item:focus{outline:none}
+.taskbar-item:focus-visible{outline:1px dotted #fff;outline-offset:-4px}
 
 .system-tray{
   display:flex;
   align-items:center;
+  height:100%;
   gap:8px;
   margin-left:auto; /* Ensures the tray is pushed to the far right */
   margin-right:0;
   padding-right:0
 }
-.tray-panel{display:flex;align-items:center;gap:8px;padding:0 12px;background:linear-gradient(180deg,#24a5f9,#1099F3);height:100%;border-radius:4px}
+/* notification area */
+.tray-panel{
+  display:flex;align-items:center;gap:8px;height:100%;padding:0 12px 0 10px;
+  background:linear-gradient(to bottom,#0c59b9 1%,#139ee9 6%,#18b5f2 10%,#139beb 14%,#1290e8 19%,#0d8dea 63%,#0d9ff1 81%,#0f9eed 88%,#119be9 91%,#1392e2 94%,#137ed7 97%,#095bc9 100%);
+  border-left:1px solid #1042af;
+  box-shadow:inset 1px 0 1px #18bbff;
+}
 .tray-icon{display:inline-flex;line-height:0}
 .tray-icon img{width:16px;height:16px;display:block}
 
-.clock{color:#fff;font-size:13px;text-shadow:1px 1px 1px rgba(0,0,0,0.6);line-height:36px;padding:0 8px}
+.clock{color:#fff;font-size:12px;white-space:nowrap;text-shadow:1px 1px 1px rgba(0,0,0,0.3)}
 
-/* ========== Start Menu (XP accurate) ========== */
+/* ========== Start Menu (XP Luna) ========== */
 .start-menu{
-  position:absolute;left:0;bottom:34px;width:400px;min-height:380px;
-  border:2px solid #316ac5;border-radius:8px;background:#f0f0f0;overflow:hidden;
-  box-shadow:0 6px 18px rgba(0,0,0,0.45);z-index:3000;display:none;flex-direction:column;
+  position:absolute;left:0;bottom:36px;width:380px;
+  background:#fff;
+  border:1px solid #0831d9;border-bottom:none;
+  border-radius:7px 7px 0 0;
+  overflow:hidden;
+  box-shadow:2px 2px 8px rgba(0,0,0,0.5);
+  z-index:3000;display:none;flex-direction:column;
   transform-origin:left bottom;
+  font-family:var(--font);font-size:12px;
 }
 
 /* open animation */
 .start-menu.open{
   display:flex;
-  animation: startOpen .18s ease forwards;
+  animation: startOpen .15s ease-out forwards;
 }
 @keyframes startOpen{
-  from {opacity:0; transform:scale(.98) translateY(8px);} 
-  to {opacity:1; transform:scale(1) translateY(0);} 
+  from {opacity:0; transform:translateY(6px);}
+  to {opacity:1; transform:translateY(0);}
 }
 
+/* blue banner with the thin orange rule underneath */
 .start-user-banner{
-  display:flex;align-items:center;gap:10px;padding:8px 12px;background:linear-gradient(to right,#245edb,#3c87ff);
-  color:#fff;font-weight:bold;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.3);
+  position:relative;
+  display:flex;align-items:center;gap:8px;
+  height:56px;padding:0 10px;
+  background:linear-gradient(to bottom,#1868ce 0%,#0e60cb 12%,#1667cf 33%,#2476dc 60%,#3482e3 77%,#4791eb 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.35);
 }
-.start-avatar{width:36px;height:36px;border-radius:4px;border:1px solid rgba(255,255,255,0.5);background:#fff}
-.start-username{text-shadow:1px 1px 2px rgba(0,0,0,0.4)}
+.start-user-banner::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:linear-gradient(to right,rgba(218,136,74,0) 0%,#da884a 50%,rgba(218,136,74,0) 100%);
+}
+.start-avatar{
+  width:42px;height:42px;object-fit:cover;
+  border:2px solid rgba(222,231,247,0.9);border-radius:3px;
+  box-shadow:1px 1px 2px rgba(0,0,0,0.4);background:#fff;
+}
+.start-username{color:#fff;font-weight:bold;font-size:15px;text-shadow:1px 1px 1px rgba(10,24,131,0.7)}
 
 .start-columns{display:flex;flex:1}
-.start-left{width:52%;background:linear-gradient(to bottom,#3a6ee0,#295bcc);color:#fff;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
-.start-right{width:48%;background:linear-gradient(to bottom,#f4f4f4,#e4e4e4);padding:10px;border-left:1px solid #b6b6b6;display:flex;flex-direction:column;justify-content:space-between}
+.start-left{flex:1 1 52%;min-width:0;background:#fff;padding:6px 0}
+.start-right{flex:1 1 48%;min-width:0;background:#d3e5fa;border-left:1px solid #95bdee;padding:6px 0}
 
-.start-programs,.start-system,.start-actions{list-style:none;margin:0;padding:0}
-.start-programs li{margin-bottom:8px}
-.start-left .start-item{display:flex;align-items:center;gap:8px;padding:6px;border-radius:4px;background:rgba(255,255,255,0.06);cursor:pointer;border:none;color:#fff;text-align:left}
-.start-left .start-item img{width:20px;height:20px}
-.start-left .start-item:hover{background:rgba(255,255,255,0.18)}
+.start-programs,.start-system{list-style:none;margin:0;padding:0}
 
-.start-right .start-item{display:flex;align-items:center;gap:8px;padding:6px;border-radius:4px;background:transparent;border:none;color:#000;cursor:pointer;text-align:left}
-.start-right .start-item img{width:20px;height:20px}
-.start-right .start-item:hover{background:#cfe1ff}
+.start-item{
+  display:flex;align-items:center;gap:6px;width:100%;
+  padding:3px 6px;border:none;background:transparent;
+  font:inherit;color:#000;text-align:left;cursor:pointer;
+}
+.start-item:hover,.start-item:focus-visible{background:#316ac5;color:#fff;outline:none}
 
-.divider{height:1px;background:#bfbfbf;margin:10px 0}
+/* left column: 32px icons, pinned items get a bold name + grey subtitle */
+.start-left .start-item{min-height:38px}
+.start-left .start-item img{width:32px;height:32px;flex-shrink:0;object-fit:contain}
+.start-text{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.start-text b{font-weight:bold}
+.start-text small{font-size:11px;color:#808080}
+.start-item:hover .start-text small,.start-item:focus-visible .start-text small{color:#fff}
 
-.start-bottom{display:flex;gap:8px;justify-content:space-between}
-.start-bottom .start-item{flex:1;justify-content:center}
+/* right column: 24px icons, dark blue text, "My ..." places in bold */
+.start-right .start-item{color:#00136b;min-height:30px}
+.start-right .start-item img{width:24px;height:24px;flex-shrink:0;object-fit:contain}
+.start-right .start-item img.badge{width:20px;height:20px;margin:2px;background:#fff;border-radius:3px}
+.start-right .start-item.strong{font-weight:bold}
+.start-right .start-item:hover,.start-right .start-item:focus-visible{color:#fff}
+
+/* faded separator lines */
+.start-sep{height:1px;margin:5px 8px;background:linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(0,0,0,0.15) 50%,rgba(0,0,0,0) 100%)}
+.start-right .start-sep{background:linear-gradient(to right,rgba(135,179,226,0) 0%,#87b3e2 50%,rgba(135,179,226,0) 100%)}
+
+/* blue footer with the power buttons */
+.start-footer{
+  display:flex;justify-content:flex-end;align-items:center;gap:4px;
+  height:40px;padding:0 6px;
+  background:linear-gradient(to bottom,#4282d6 0%,#3b85e0 3%,#418ae3 5%,#418ae3 17%,#3c87e2 21%,#3786e4 26%,#3482e3 29%,#2e7ee1 39%,#2374df 49%,#2072db 57%,#196edb 62%,#176bd8 72%,#1468d5 75%,#1165d4 83%,#0f61cb 88%);
+}
+.start-footer .start-item{width:auto;color:#fff;padding:3px 6px;border-radius:3px}
+.start-footer .start-item img{width:22px;height:22px}
+.start-footer .start-item:hover{background:rgba(255,255,255,0.15)}
 
 /* ========== Spotify widget (top-right) ========== */
 .spotify-widget{
@@ -356,8 +435,7 @@ a.icon{text-decoration:none}
 
   #resumeWindow .window-content{height:75vh !important;height:75dvh !important}
 
-  .start-menu{width:min(400px, calc(100vw - 8px))}
-  .taskbar-item{min-width:0 !important;max-width:90px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-shrink:1}
+  .start-menu{width:min(380px, calc(100vw - 8px))}
 }
 
 @media (max-width:480px){
@@ -372,33 +450,20 @@ a.icon{text-decoration:none}
   .icon img{width:36px;height:36px;}
   .icon span{font-size:11px;}
 
-  .start-left .start-item span,
-  .start-right .start-item span{font-size:12px}
 
-  /* ========== Taskbar Fixes for Mobile <= 480px ========== */
-  .taskbar{
-    height:32px;
-    padding:0 4px; /* Reduced padding for tighter fit */
-  }
+  /* Taskbar on small phones: same height as desktop, just tighter, and window buttons go icon-only */
   .start-button{
-    padding:0 8px; /* Reduced padding on the button */
+    padding:0 14px 0 8px;
     gap:4px;
-    font-size:12px;
+    font-size:16px;
   }
-  .pinned{
-    margin-right: 4px; /* Tighter space after pinned icons */
-  }
-  .pinned .pin-btn img{width:20px;}
-  
-  .tray-panel{
-    padding:0 8px; /* Reduced padding on the tray */
-  }
-  .clock{
-    font-size: 12px;
-    line-height: 32px; /* Adjusted line-height to fit new taskbar height */
-    padding: 0 4px;
-  }
-  /* ======================================================= */
+  .pinned{gap:5px;padding:0 6px 0 2px;margin-right:2px}
+  .pinned .pin-btn img{width:18px;}
+  .task-items{padding:0 4px 0 3px}
+  .taskbar-item{flex:0 0 34px;justify-content:center;padding:0}
+  .taskbar-item span{display:none}
+  .tray-panel{padding:0 8px;gap:6px}
+  .clock{font-size:11px}
 }
 
 /* ========== Small utility ========== */
