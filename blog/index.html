@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Blog — Hashir Sami</title>
+<link rel="icon" href="../images/icon-notepad.png">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+  <div class="notepad">
+    <div class="titlebar">
+      <span class="title"><img src="../images/icon-notepad.png" alt=""> blog.txt - Notepad</span>
+      <a class="close" href="../" title="Back to desktop">×</a>
+    </div>
+    <nav class="menubar">
+      <a href="../">&larr; Desktop</a>
+      <span>File</span><span>Edit</span><span>Format</span><span>View</span><span>Help</span>
+    </nav>
+    <main class="page">
+      <ul class="posts" id="posts"></ul>
+      <p class="empty" id="status">loading…</p>
+    </main>
+  </div>
+
+<script>
+  // Posts live in /blog/posts/. A local dev server (python http.server, Live Server, ...) serves a
+  // directory listing for that folder, so read it from there. GitHub Pages has no directory
+  // listings, so fall back to asking the GitHub API what's in the folder.
+  // Any .html file dropped in /blog/posts/ shows up automatically.
+  const POSTS_DIR = 'posts/';
+  const REPO_DIR = 'https://api.github.com/repos/Hashir103/Hashir103.github.io/contents/blog/posts';
+  const REPO_COMMITS = 'https://api.github.com/repos/Hashir103/Hashir103.github.io/commits';
+  const list = document.getElementById('posts');
+  const status = document.getElementById('status');
+
+  // template.html is the starter file for new posts, so it's never listed
+  const HIDDEN = ['index.html', 'template.html'];
+  const isPost = name => /\.html?$/i.test(name) && !HIDDEN.includes(name.toLowerCase());
+
+  function prettyName(file) {
+    return file.replace(/\.html?$/i, '').replace(/[-_]+/g, ' ');
+  }
+
+  // returns null when the server doesn't give a directory listing (e.g. GitHub Pages)
+  async function listFromServer() {
+    try {
+      const r = await fetch(POSTS_DIR);
+      if (!r.ok) return null;
+      const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      const names = [...doc.querySelectorAll('a[href]')]
+        .map(a => decodeURIComponent(a.getAttribute('href').split(/[?#]/)[0].split('/').pop()))
+        .filter(isPost);
+      return [...new Set(names)];
+    } catch { return null; }
+  }
+
+  async function listFromGitHub() {
+    const r = await fetch(REPO_DIR);
+    if (r.status === 404) return [];
+    if (!r.ok) throw new Error(r.status);
+    return (await r.json()).filter(f => f.type === 'file' && isPost(f.name)).map(f => f.name);
+  }
+
+  // Title comes from the post's <title>, date from <meta name="date" content="YYYY-MM-DD">.
+  // Posts without the meta tag fall back to the date the file was first committed.
+  async function postInfo(name) {
+    let title = prettyName(name), date = '';
+    try {
+      const html = await (await fetch(POSTS_DIR + encodeURIComponent(name))).text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      title = doc.querySelector('title')?.textContent.trim() || title;
+      date = doc.querySelector('meta[name="date"]')?.content.trim() || '';
+    } catch {}
+    if (!date) {
+      try {
+        const commits = await (await fetch(`${REPO_COMMITS}?path=blog/posts/${encodeURIComponent(name)}&per_page=100`)).json();
+        date = commits[commits.length - 1].commit.author.date.slice(0, 10);
+      } catch {}
+    }
+    return { name, title, date };
+  }
+
+  (async () => {
+    try {
+      const names = (await listFromServer()) ?? (await listFromGitHub());
+      const posts = await Promise.all(names.map(postInfo));
+      if (!posts.length) { status.textContent = 'nothing here yet.'; return; }
+
+      // newest first
+      posts.sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
+
+      status.remove();
+      for (const p of posts) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = POSTS_DIR + encodeURIComponent(p.name);
+        a.textContent = p.date ? `${p.date} - ${p.title}` : p.title;
+        li.appendChild(a);
+        list.appendChild(li);
+      }
+    } catch {
+      status.textContent = "couldn't load posts right now.";
+    }
+  })();
+</script>
+</body>
+</html>

@@ -20,6 +20,14 @@ function openWindow(id) {
   focusWindow(el);
   makeDraggable(el);
   setupWindowControls(el, id);
+
+  // windows are stacked in a scrolling column on mobile, so bring the opened one into view
+  if (pageReady && isStackedLayout()) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+let pageReady = false;
+function isStackedLayout() {
+  return window.matchMedia('(max-width: 1024px)').matches;
 }
 
 function closeWindow(id) {
@@ -70,7 +78,10 @@ function makeDraggable(element) {
   const header = element.querySelector('.window-header');
   if (!header) return;
   header.style.cursor = 'move';
-  header.onmousedown = dragMouseDown;
+  header.onmousedown = (e) => {
+    if (isStackedLayout() || element.classList.contains('maximized') || e.target.closest('.window-controls')) return;
+    dragMouseDown(e);
+  };
 
   let pos1=0,pos2=0,pos3=0,pos4=0;
 
@@ -130,23 +141,35 @@ function setupWindowControls(el, id) {
 
   if (btnMax) btnMax.addEventListener('click', (e)=> {
     e.stopPropagation();
-    if (el.classList.contains('maximized')) {
-      el.classList.remove('maximized');
-      // restore from css not tracked positions (could be improved)
-      el.style.width = el.dataset.prevWidth || '';
-      el.style.height = el.dataset.prevHeight || '';
-      el.style.left = el.dataset.prevLeft || '';
-      el.style.top = el.dataset.prevTop || '';
-    } else {
-      // save previous inline
-      el.dataset.prevWidth = el.style.width || el.offsetWidth + 'px';
-      el.dataset.prevHeight = el.style.height || el.offsetHeight + 'px';
-      el.dataset.prevLeft = el.style.left || el.offsetLeft + 'px';
-      el.dataset.prevTop = el.style.top || el.offsetTop + 'px';
-      el.classList.add('maximized');
-      el.style.left='0'; el.style.top='0'; el.style.width='100%'; el.style.height='calc(100% - 30px)';
-    }
+    toggleMaximize(el);
   });
+
+  // double-clicking the title bar maximizes/restores, like XP
+  const header = el.querySelector('.window-header');
+  if (header && btnMax && !btnMax.disabled) header.addEventListener('dblclick', (e)=> {
+    if (e.target.closest('.window-controls') || isStackedLayout()) return;
+    toggleMaximize(el);
+  });
+}
+
+const MAX_PROPS = ['left','top','width','height','transform'];
+
+function toggleMaximize(el) {
+  const btnMax = el.querySelector('.maximize');
+  if (el.classList.contains('maximized')) {
+    el.classList.remove('maximized');
+    // put back exactly the inline values the window had (including '' and the resume's centering transform)
+    MAX_PROPS.forEach(p => { el.style[p] = el.dataset['prev_' + p] || ''; });
+    if (btnMax) { btnMax.textContent = '□'; btnMax.title = 'Maximize'; }
+  } else {
+    MAX_PROPS.forEach(p => { el.dataset['prev_' + p] = el.style[p]; });
+    el.classList.add('maximized');
+    el.style.left = '0'; el.style.top = '0';
+    el.style.width = '100%'; el.style.height = '100%';
+    el.style.transform = 'none';
+    if (btnMax) { btnMax.textContent = '❐'; btnMax.title = 'Restore Down'; }
+  }
+  focusWindow(el);
 }
 
 /* ---------- Start Menu toggle & interactions ---------- */
@@ -196,7 +219,9 @@ document.addEventListener('click', (e)=>{
   if (action === 'clubpenguin') window.open('https://play.hashir.tech','_blank');
   else if (action === 'worldcars') window.open('https://hashir.tech/beta/','_blank');
   else if (action === 'jellyfin') window.open('https://jellyfin.hashir.tech/','_blank');
-    else if (action === 'youtube') openWindow('youtube');
+  else if (action === 'dj') window.open('https://dj.hashir.tech','_blank');
+  else if (action === 'mm2') window.open('https://mm2.hashir.tech','_blank');
+  else if (action === 'youtube') window.open('https://www.youtube.com/@hashirlifestuff/videos','_blank');
 
   // system actions map to local windows
   else if (action === 'mycomputer') openWindow('about');
@@ -241,5 +266,6 @@ window.addEventListener('DOMContentLoaded', () => {
   openWindow('youtube');
   youtubeWin.style.left = '38%';
   youtubeWin.style.top = '40%';
+  pageReady = true;
 });
 

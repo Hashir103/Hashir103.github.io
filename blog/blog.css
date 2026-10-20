@@ -1,0 +1,98 @@
+/* Shared look for the blog: an XP Notepad window on the desktop wallpaper, matching the main page */
+:root{
+  --xp-blue-start:#2f8cff;
+  --xp-blue-end:#0050ef;
+  --xp-window-bg:#ECE9D8;
+  --font:"Tahoma","Verdana",sans-serif;
+  --mono:"Lucida Console","Consolas",monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  min-height:100vh;
+  background:#3a6ea5 url('../images/winxp-wallpaper.jpg') center/cover fixed no-repeat;
+  font-family:var(--font);
+  padding:40px 16px;
+  -webkit-font-smoothing:antialiased;
+}
+
+.notepad{
+  max-width:760px;
+  margin:0 auto;
+  background:var(--xp-window-bg);
+  border:1px solid #0055ea;
+  border-radius:8px 8px 0 0;
+  box-shadow:0 0 14px rgba(0,0,0,0.4);
+  overflow:hidden;
+}
+
+/* title bar */
+.titlebar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:6px 8px 6px 10px;
+  background:linear-gradient(to right,var(--xp-blue-start),var(--xp-blue-end));
+  color:#fff;
+  font-weight:bold;
+  font-size:13px;
+}
+.titlebar .title{display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.titlebar .title img{width:16px;height:16px;flex-shrink:0}
+.titlebar .close{
+  flex-shrink:0;
+  width:22px;height:20px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,0.7);border-radius:3px;
+  background:linear-gradient(to bottom,#f26b6b,#d93b3b);
+  color:#fff;text-decoration:none;font-size:14px;line-height:1;
+}
+.titlebar .close:hover{filter:brightness(1.1)}
+
+/* menu bar */
+.menubar{
+  display:flex;
+  gap:2px;
+  padding:2px 4px;
+  font-size:12px;
+  color:#000;
+  border-bottom:1px solid #c5c2b2;
+}
+.menubar span,.menubar a{padding:2px 6px;color:#000;text-decoration:none}
+.menubar a:hover{background:#316ac5;color:#fff}
+
+/* the white text area */
+.page{
+  margin:3px;
+  min-height:60vh;
+  background:#fff;
+  border:1px solid #7f9db9;
+  padding:20px 24px 32px;
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.7;
+  color:#000;
+}
+.page a{color:#0645ad}
+.page a:visited{color:#5a3696}
+
+/* list page */
+.page .posts{list-style:none;margin:0}
+.posts li a{text-decoration:none}
+.posts li a:hover{text-decoration:underline}
+.empty{color:#666}
+
+/* post page */
+.page h1{font-size:20px;font-weight:bold;margin-bottom:2px}
+.page .date{color:#666;font-size:13px;margin-bottom:24px}
+.page p{margin-bottom:16px}
+.page h2{font-size:16px;margin:24px 0 8px}
+.page img{max-width:100%;height:auto}
+.page ul,.page ol{margin:0 0 16px 24px}
+
+@media (max-width:600px){
+  body{padding:12px 8px}
+  .page{padding:16px 14px 24px;font-size:13px}
+}

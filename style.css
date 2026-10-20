@@ -26,7 +26,7 @@ body{
 /* ========== Desktop ========== */
 .desktop{
   position:relative;
-  height:calc(100vh - 30px); /* leave taskbar */
+  height:calc(100vh - 36px); /* leave taskbar */
   padding:12px;
   overflow:hidden;
 }
@@ -48,11 +48,57 @@ body{
   border-radius:6px;
 }
 
-.icon img{width:48px;height:48px;display:block;margin-bottom:6px}
+.icon img{width:48px;height:48px;display:block;margin-bottom:6px;object-fit:contain}
 .icon span{
   color:#fff;
   font-size:12px;
   text-shadow:1px 1px 1px #000;
+}
+a.icon{text-decoration:none}
+.icon:hover,.icon:focus-visible{background:rgba(49,106,197,0.45);outline:1px dotted rgba(255,255,255,0.7)}
+
+/* Shortcut row anchored just above the YouTube window (which opens at left:38%; top:40%) */
+.desktop-shortcuts{
+  position:absolute;
+  left:38%;
+  bottom:calc(60% + 6px);
+  display:grid;
+  grid-template-columns:repeat(2,110px);
+  column-gap:28px;
+  row-gap:12px;
+}
+.desktop-shortcuts .icon{width:auto}
+.desktop-shortcuts .icon span{white-space:nowrap}
+
+/* Wide screens: fill the whole gap between About Me and Spotify, staggered like
+   icons scattered on a desktop rather than a tidy grid */
+@media (min-width:1301px){
+  .desktop-shortcuts{
+    /* stop short of Spotify (~300px + gutter), but don't sprawl past ~720x340 on big screens */
+    top:max(16px, calc(40% - 340px));
+    right:max(330px, calc(62% - 720px));
+    grid-template-columns:repeat(4,110px);
+    grid-template-rows:repeat(3,auto);
+    justify-content:space-between;
+    align-content:space-between;
+  }
+  .desktop-shortcuts .icon:nth-child(1){grid-area:1 / 1}
+  .desktop-shortcuts .icon:nth-child(2){grid-area:1 / 3}
+  .desktop-shortcuts .icon:nth-child(3){grid-area:2 / 2}
+  .desktop-shortcuts .icon:nth-child(4){grid-area:2 / 4}
+  .desktop-shortcuts .icon:nth-child(5){grid-area:3 / 1}
+  .desktop-shortcuts .icon:nth-child(6){grid-area:3 / 3}
+}
+/* shorter screens: shrink so all 3 rows still fit above the video */
+@media (max-height:760px) and (min-width:1025px){
+  .desktop-shortcuts{row-gap:4px}
+  .desktop-shortcuts .icon img{width:36px;height:36px;margin-bottom:4px}
+}
+.icon img.pixel,.start-item img.pixel{image-rendering:pixelated}
+
+/* keep About Me from overlapping the shortcuts / YouTube window */
+@media (min-width:1025px){
+  #aboutWindow{max-width:max(320px, calc(31vw - 24px))}
 }
 
 /* ========== Windows ========== */
@@ -140,8 +186,9 @@ body{
 
 /* maximized */
 .window.maximized{
-  top:0;left:0;width:100%;height:calc(100% - 30px);border-radius:0;
+  top:0;left:0;width:100%;height:100%;border-radius:0;transform:none;
 }
+.window.maximized .window-header{border-radius:0;cursor:default !important}
 
 /* active window highlight */
 .window.active .window-header{ box-shadow: inset 0 -2px 6px rgba(0,0,0,0.12); }
@@ -199,12 +246,14 @@ body{
   padding-right:0
 }
 .tray-panel{display:flex;align-items:center;gap:8px;padding:0 12px;background:linear-gradient(180deg,#24a5f9,#1099F3);height:100%;border-radius:4px}
+.tray-icon{display:inline-flex;line-height:0}
+.tray-icon img{width:16px;height:16px;display:block}
 
 .clock{color:#fff;font-size:13px;text-shadow:1px 1px 1px rgba(0,0,0,0.6);line-height:36px;padding:0 8px}
 
 /* ========== Start Menu (XP accurate) ========== */
 .start-menu{
-  position:absolute;left:0;bottom:34px;width:400px;height:380px;
+  position:absolute;left:0;bottom:34px;width:400px;min-height:380px;
   border:2px solid #316ac5;border-radius:8px;background:#f0f0f0;overflow:hidden;
   box-shadow:0 6px 18px rgba(0,0,0,0.45);z-index:3000;display:none;flex-direction:column;
   transform-origin:left bottom;
@@ -227,7 +276,7 @@ body{
 .start-avatar{width:36px;height:36px;border-radius:4px;border:1px solid rgba(255,255,255,0.5);background:#fff}
 .start-username{text-shadow:1px 1px 2px rgba(0,0,0,0.4)}
 
-.start-columns{display:flex;height:100%}
+.start-columns{display:flex;flex:1}
 .start-left{width:52%;background:linear-gradient(to bottom,#3a6ee0,#295bcc);color:#fff;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
 .start-right{width:48%;background:linear-gradient(to bottom,#f4f4f4,#e4e4e4);padding:10px;border-left:1px solid #b6b6b6;display:flex;flex-direction:column;justify-content:space-between}
 
@@ -252,76 +301,79 @@ body{
 }
 
 /* ========== Responsive tweaks ========== */
+/* Phones & tablets: drop the floating-window layout and stack everything
+   in a scrollable column. !important is needed to beat the inline styles main.js sets. */
 @media (max-width:1024px){
-  /* Windows */
-  .window{
-    max-width:90vw;
-    max-height:80vh;
-  }
-
-  .youtube-window{
-    width:min(560px, 90vw) !important;
-    height:min(390px, 72vh) !important;
-  }
-
-  /* iframe inside windows (Resume) */
-  .window-content iframe{
-    width:100% !important;
-    height:100% !important;
-  }
-}
-
-/* Specific fix for small mobile devices (<= 580px) */
-@media (max-width:580px){
-  
-  #aboutWindow {
-    /* Ensures the window is sized appropriately for the content */
-    width: 90vw !important; 
-    height: auto !important;
-    max-height: 90vh; 
-  }
-
-  #resumeWindow {
-    /* Forces the resume window to be large for readability on mobile */
-    width: 95vw !important;
-    height: 90vh !important;
-  }
-
-    #youtubeWindow {
-      width: 94vw !important;
-      height: 56vw !important;
-      min-height: 240px !important;
-    }
-}
-
-
-@media (max-width:640px){
-  .start-menu{width:320px;height:360px}
   .spotify-widget{display:none}
+
+  .desktop{
+    height:calc(100vh - 36px);
+    height:calc(100dvh - 36px);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding:12px 12px 24px;
+  }
+
+  .desktop-icons{display:flex;gap:8px;order:0}
+  #aboutWindow{order:1}
+  .desktop-shortcuts{
+    order:2;
+    position:static;
+    max-width:none;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(80px,1fr));
+    gap:10px 6px;
+    justify-items:center;
+  }
+  .desktop-shortcuts .icon{width:80px}
+  .desktop-shortcuts .icon span{white-space:normal}
+  #youtubeWindow{order:3}
+  #resumeWindow{order:4}
+
+  .window,
+  .window.maximized{
+    position:relative !important;
+    left:auto !important;
+    top:auto !important;
+    transform:none !important;
+    width:100% !important;
+    height:auto !important;
+    max-width:none;
+    max-height:none;
+    min-width:0;
+    min-height:0;
+    flex-shrink:0;
+    z-index:auto !important;
+  }
+  .window-header{cursor:default !important}
+  .window-controls .maximize{display:none}
+
+  #youtubeWindow .window-content{height:auto !important}
+  #youtubeWindow iframe{display:block;width:100%;height:auto;aspect-ratio:16 / 9}
+
+  #resumeWindow .window-content{height:75vh !important;height:75dvh !important}
+
+  .start-menu{width:min(400px, calc(100vw - 8px))}
+  .taskbar-item{min-width:0 !important;max-width:90px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex-shrink:1}
 }
 
 @media (max-width:480px){
-  /* Window tweaks */
-  .window{
-    width:90vw !important;
-    height:70vh !important;
-    min-width:auto;
-    min-height:auto;
-    font-size:12px;
-  }
-
+  .window-content{font-size:13px}
   .window-header{
     padding:4px 6px;
   }
   .window-title{font-size:12px;}
-  .window-controls button{width:18px;height:16px;font-size:10px;}
+  .window-controls button{width:20px;height:18px;font-size:11px;}
 
-  .desktop-icons{
-    grid-template-columns: repeat(1,60px);
-    gap:12px;
-  }
+  .icon{width:72px}
   .icon img{width:36px;height:36px;}
-  .icon span{font-size:10px;}
+  .icon span{font-size:11px;}
+
+  .start-left .start-item span,
+  .start-right .start-item span{font-size:12px}
 
   /* ========== Taskbar Fixes for Mobile <= 480px ========== */
   .taskbar{

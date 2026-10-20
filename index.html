@@ -25,6 +25,33 @@
       </div>
     </div>
 
+    <!-- Desktop shortcuts (sit just above the YouTube window) -->
+    <nav class="desktop-shortcuts" id="desktopShortcuts" aria-label="Shortcuts">
+      <a class="icon" href="https://play.hashir.tech" target="_blank" rel="noopener" title="Hashir's Club Penguin">
+        <img src="images/icon-clubpenguin.webp" alt="">
+        <span>Club Penguin</span>
+      </a>
+      <a class="icon" href="https://hashir.tech/beta/" target="_blank" rel="noopener" title="Cars Online Chatroom">
+        <img src="images/icon-worldcars.png" alt="">
+        <span>Cars Chatroom</span>
+      </a>
+      <a class="icon" href="https://jellyfin.hashir.tech/" target="_blank" rel="noopener" title="My Media Server">
+        <img src="images/icon-jellyfin.png" alt="">
+        <span>Media Server</span>
+      </a>
+      <a class="icon" href="https://www.youtube.com/@hashirlifestuff/videos" target="_blank" rel="noopener" title="Personal YouTube">
+        <img src="images/icon-youtube.png" alt="">
+        <span>Personal YouTube</span>
+      </a>
+      <a class="icon" href="https://dj.hashir.tech" target="_blank" rel="noopener" title="The Public Radio Project">
+        <img src="images/icon-dj.png" alt="">
+        <span>Public Radio</span>
+      </a>
+      <a class="icon" href="https://mm2.hashir.tech" target="_blank" rel="noopener" title="Midtown Madness 2">
+        <img src="images/icon-mm2.ico" class="pixel" alt="">
+        <span>Midtown Madness 2</span>
+      </a>
+    </nav>
 
     <!-- About Window -->
     <div id="aboutWindow" class="window" style="display:none; left:105px; top:95px">
@@ -75,11 +102,11 @@
         <span class="window-title">Resume</span>
         <div class="window-controls">
           <button class="minimize" title="Minimize">_</button>
-          <button class="maximize" title="Maximize" disabled>□</button>
+          <button class="maximize" title="Maximize">□</button>
           <button class="close" title="Close" onclick="closeWindow('resume')">×</button>
         </div>
       </div>
-      <div class="window-content" style="padding:0;height:calc(100% - 46px)">
+      <div class="window-content" style="padding:0;height:calc(100% - 30px)">
         <!-- embed PDF cleanly -->
         <iframe src="https://hashir.tech/assets/Hashir_Sami.pdf" style="width:100%;height:100%;border:none;"></iframe>
       </div>
@@ -116,6 +143,8 @@
 
     <div class="system-tray" aria-hidden="false">
       <div class="tray-panel" role="group" aria-label="System tray">
+        <!-- blog: tucked into the tray on purpose, no label or tooltip -->
+        <a class="tray-icon" href="blog/" aria-label="Blog"><img src="images/icon-notepad.png" alt=""></a>
         <div class="clock" id="clock">12:00 PM</div>
       </div>
     </div>
@@ -149,7 +178,17 @@
           </li>
            <li>
             <button class="start-item" data-action="youtube" title="Youtube">
-              <img src="images/icon-youtube.png" alt=""> <span>My YouTube</span>
+              <img src="images/icon-youtube.png" alt=""> <span>Personal YouTube</span>
+            </button>
+          </li>
+          <li>
+            <button class="start-item" data-action="dj" title="The Public Radio Project">
+              <img src="images/icon-dj.png" alt=""> <span>The Public Radio Project</span>
+            </button>
+          </li>
+          <li>
+            <button class="start-item" data-action="mm2" title="Midtown Madness 2">
+              <img src="images/icon-mm2.ico" class="pixel" alt=""> <span>Midtown Madness 2</span>
             </button>
           </li>
         </ul>
