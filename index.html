@@ -25,19 +25,19 @@
       </div>
     </div>
 
-    <!-- Desktop shortcuts (sit just above the YouTube window) -->
+    <!-- Desktop shortcuts (sit above the About Me window) -->
     <nav class="desktop-shortcuts" id="desktopShortcuts" aria-label="Shortcuts">
-      <a class="icon" href="https://play.hashir.tech" target="_blank" rel="noopener" title="Hashir's Club Penguin">
-        <img src="images/icon-clubpenguin.webp" alt="">
-        <span>Club Penguin</span>
+      <a class="icon" href="https://jellyfin.hashir.tech/" target="_blank" rel="noopener" title="My Media Server">
+        <img src="images/icon-jellyfin.png" alt="">
+        <span>Media Server</span>
       </a>
       <a class="icon" href="https://hashir.tech/beta/" target="_blank" rel="noopener" title="Cars Online Chatroom">
         <img src="images/icon-worldcars.png" alt="">
         <span>Cars Chatroom</span>
       </a>
-      <a class="icon" href="https://jellyfin.hashir.tech/" target="_blank" rel="noopener" title="My Media Server">
-        <img src="images/icon-jellyfin.png" alt="">
-        <span>Media Server</span>
+      <a class="icon" href="https://play.hashir.tech" target="_blank" rel="noopener" title="Hashir's Club Penguin">
+        <img src="images/icon-clubpenguin.webp" alt="">
+        <span>Club Penguin</span>
       </a>
       <a class="icon" href="https://www.youtube.com/@hashirlifestuff/videos" target="_blank" rel="noopener" title="Personal YouTube">
         <img src="images/icon-youtube.png" alt="">
@@ -69,6 +69,11 @@
         <p>queen's university cs grad.</p>
         <p>big fan of the nba, premier league, league of legends, and history.</p>
         <p>click the folder to see my resume! or see it <a href="https://hashir.tech/assets/Hashir_Sami.pdf" target="_blank">here</a>!</p>
+        <div class="about-links">
+          <a class="xp-btn" href="https://github.com/hashir103" target="_blank" rel="noopener"><img src="images/icon-github.png" alt="">GitHub</a>
+          <a class="xp-btn" href="https://linkedin.com/in/hashir-sami" target="_blank" rel="noopener"><img src="images/icon-linkedin.png" alt="">LinkedIn</a>
+          <a class="xp-btn" href="https://hashir.tech/assets/Hashir_Sami.pdf" target="_blank" rel="noopener"><img src="images/folder.png" alt="">Resume</a>
+        </div>
         <br>
         <pre>Art by valkyrie
   ____
@@ -82,7 +87,7 @@
     </div>
 
     <!-- YouTube Window -->
-    <div id="youtubeWindow" class="window youtube-window" style="display:none; left:611px; top:264px; width:560px; height:347px;">
+    <div id="youtubeWindow" class="window youtube-window" style="display:none; width:400px; height:257px;">
       <div class="window-header">
         <span class="window-title">Latest Video</span>
         <div class="window-controls">
@@ -91,8 +96,8 @@
           <button class="close" title="Close" onclick="closeWindow('youtube')">×</button>
         </div>
       </div>
-      <div class="window-content" style="padding:0;height:315px">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Wyo-T5UEd1I?si=Rigv0193FP33UaXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div class="window-content" style="padding:0;height:225px">
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/Wyo-T5UEd1I?si=Rigv0193FP33UaXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -117,6 +122,24 @@
   <!-- Spotify player (fixed top-right) -->
   <div class="spotify-widget" aria-hidden="false" title="Spotify">
          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4d81FmmIf9ERT1E2M5H07W?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <!-- MSN Messenger-style sign-in toast (slides up from the tray shortly after load) -->
+  <div class="msn-toast" id="msnToast" role="status" aria-live="polite" hidden>
+    <div class="msn-toast-header">
+      <span>Messenger</span>
+      <button class="msn-toast-close" id="msnToastClose" title="Close" aria-label="Close">×</button>
+    </div>
+    <div class="msn-toast-body">
+      <img class="msn-toast-avatar" src="images/user.jpg" alt="">
+      <div>
+        <p><b>Hashir Sami</b> has just signed in.</p>
+        <div class="msn-toast-links">
+          <a href="https://github.com/hashir103" target="_blank" rel="noopener"><img src="images/icon-github.png" alt="">GitHub</a>
+          <a href="https://linkedin.com/in/hashir-sami" target="_blank" rel="noopener"><img src="images/icon-linkedin.png" alt="">LinkedIn</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Taskbar -->
