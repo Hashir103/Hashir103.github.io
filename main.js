@@ -116,6 +116,7 @@ function makeDraggable(element) {
     pos3 = e.clientX; pos4 = e.clientY;
     element.style.top = (element.offsetTop - pos2) + "px";
     element.style.left = (element.offsetLeft - pos1) + "px";
+    element.dataset.moved = '1';
   }
 
   function closeDragElement(){
@@ -275,15 +276,43 @@ startMenu.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-    const win = document.getElementById('aboutWindow');
-    openWindow('about');
-  win.style.left = '7%';
-  win.style.top = '10%';
-
+  // Latest Video tucked into the top-left; About Me centered so it's the focus of the page
   const youtubeWin = document.getElementById('youtubeWindow');
   openWindow('youtube');
-  youtubeWin.style.left = '38%';
-  youtubeWin.style.top = '40%';
+  youtubeWin.style.left = '7%';
+  youtubeWin.style.top = '10%';
+
+  const win = document.getElementById('aboutWindow');
+  openWindow('about');
+  centerAboutWindow();
+  // below the shortcuts, and never under the video on shorter screens
+  win.style.top = 'max(calc(38% + 40px), calc(10% + 269px))';
+  window.addEventListener('resize', () => { if (!win.dataset.moved) centerAboutWindow(); });
   pageReady = true;
+
+  showMsnToast();
 });
 
+
+function centerAboutWindow() {
+  const win = document.getElementById('aboutWindow');
+  const desktop = document.getElementById('desktop');
+  win.style.left = Math.max(0, Math.round((desktop.clientWidth - win.offsetWidth) / 2)) + 'px';
+}
+
+/* ---------- MSN Messenger-style sign-in toast ---------- */
+function showMsnToast() {
+  const toast = document.getElementById('msnToast');
+  if (!toast) return;
+  const hide = () => {
+    toast.classList.remove('show');
+    setTimeout(() => { toast.hidden = true; }, 500);
+  };
+  document.getElementById('msnToastClose').onclick = hide;
+  setTimeout(() => {
+    toast.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('show')));
+    // on phones it would cover the stacked content, so let it go away on its own
+    if (isStackedLayout()) setTimeout(hide, 8000);
+  }, 1500);
+}
